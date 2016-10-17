@@ -1,0 +1,32 @@
+<%= form_for(@profissao) do |f| %>
+  <% if @profissao.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger" style="width: 900px;">
+      <h2><%= pluralize(@profissao.errors.count, "erro") %> no formulario.</h2>
+      <hr>
+      <ul>
+      <% @profissao.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+          <br>
+      <% end %>
+      </ul>
+    </div>
+    <hr>
+  <% end %>
+
+  <div class="form">
+    <div class="field form-group">
+      Área
+      <%= f.select(:areas_profissional_id, AreasProfissional.all.collect {|e| [e.area, e.id]}, { prompt: "Selecione a Área" },:class => 'form-control', :required => true) %>
+    </div>
+    <div class="field form-group">
+      Profissão
+      <%= f.text_field :profissao, :required => true, :class => 'form-control' %>
+    </div>
+    <hr>
+    <div class="actions ">
+      <%= button_tag(type: 'submit', class: "btn btn-sm btn-primary", title: 'Salvar') do %>
+        <i class="fa fa-save"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>

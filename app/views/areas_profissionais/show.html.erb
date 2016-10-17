@@ -1,0 +1,31 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col-lg-6">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h1>Visualizando Área</h1>
+				</div>
+				<div class="ibox-content">
+					<p id="notice">
+						<center class="alert-info">
+							<%= notice %> 
+						</center>
+					</p>
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<p>
+							  <strong>Área:</strong>
+							  	<%= @areas_profissional.area %>
+							</p>
+						</div>
+					</div>
+					<div>
+						<%= link_to '', new_areas_profissional_path, :class => 'btn btn-primary fa fa-plus', :title => 'Nova Área' %>
+						<%= link_to '', edit_areas_profissional_path(@areas_profissional), :class => 'btn btn-warning fa fa-edit', :title => 'Editar' %>
+						<%= link_to '', areas_profissionais_path, :class => 'btn btn-danger fa fa-reply', :title => 'Voltar' %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

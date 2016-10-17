@@ -1,0 +1,24 @@
+<%= form_for(@areas_profissional) do |f| %>
+  <% if @areas_profissional.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@areas_profissional.errors.count, "error") %> impediu esta crença de ser salva:</h2>
+
+      <ul>
+      <% @areas_profissional.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <form class="form-horizontal">
+    <div class="field form-group">
+      Área
+      <%= f.text_field :area, :class => 'form-control', :required => true %>
+    </div>
+    <div class="actions">
+      <%= button_tag(type: 'submit', class: "btn btn-sm btn-primary", title: 'Salvar') do %>
+      <i class="fa fa-save"></i>
+      <% end %>
+    </div>
+  </form>
+<% end %>

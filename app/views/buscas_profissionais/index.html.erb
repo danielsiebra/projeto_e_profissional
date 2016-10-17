@@ -1,0 +1,6 @@
+<%= form_tag :controller => "buscas_profissionais", :action => "index" do %>
+    <%= text_field_tag :profissionais, nil, placeholder: "Buscar profissionais", class: "form-control set_datepicker" %>
+    <%= button_tag(type: 'submit', class: "btn btn-md btn-primary", title: 'Consultar') do %>
+          <i class="fa fa-search"></i>
+    <% end %>
+<% end %>

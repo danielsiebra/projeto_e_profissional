@@ -1,0 +1,36 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col-lg-6">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h1>Visualizando Profissão do Profissional</h1>
+				</div>
+				<div class="ibox-content">
+					<p id="notice">
+						<center class="alert-info">
+							<%= notice %> 
+						</center>
+					</p>
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<p>
+							  <strong>Profissão:</strong>
+							  <%= Profissao.find(@profissoes_profissional.profissao_id).profissao if !@profissoes_profissional.profissao_id.nil? %>
+							</p>
+							<hr>
+							<p>
+							  <strong>Profissional:</strong>
+							  <%= Profissional.find(@profissoes_profissional.profissional_id).nome_completo if !@profissoes_profissional.profissional_id.nil? %>
+							</p>
+						</div>
+					</div>
+					<div>
+						<%= link_to '', new_profissoes_profissional_path, :class => 'btn btn-primary fa fa-plus', :title => 'Nova Profissão do Profissional' %>
+						<%= link_to '', edit_profissoes_profissional_path(@profissoes_profissional), :class => 'btn btn-warning fa fa-edit', :title => 'Editar' %>
+						<%= link_to '', profissoes_profissionais_path, :class => 'btn btn-sm btn-danger fa fa-reply', :title => 'Voltar/Cancelar' %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

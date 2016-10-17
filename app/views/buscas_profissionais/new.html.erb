@@ -1,0 +1,29 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <h2>
+                        Buscar Profissões:
+                    </h2>
+                    <div class="search-form">
+                        <form action="#" method="get">
+                            <div class="input-group">
+                                <input type="text" placeholder="Admin Theme" name="search" class="form-control input-lg">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-lg btn-primary" type="submit">
+                                        Buscar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <%= text_field_tag :busca, nil, class: 'form-control', placeholder: 'Profissional', id: 'busca' %>
+                    <div id='retorno'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%#= select_tag(:busca, options_for_select(Profissional.all.collect {|p| [p.nome_completo, p.id]}), prompt: 'Selecione', :class => "chosen-select") %>
+<%#= select_tag :busca, options_for_select(Profissional.all.collect {|p| [p.nome_completo, p.id]}), prompt: 'Selecione', class: "chosen-select", style: "width:350px;" %>

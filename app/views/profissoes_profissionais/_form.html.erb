@@ -1,0 +1,29 @@
+<%= form_for(@profissoes_profissional) do |f| %>
+  <% if @profissoes_profissional.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profissoes_profissional.errors.count, "error") %> impediu esta crença de ser salva:</h2>
+
+      <ul>
+        <% @profissoes_profissional.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <form class="form-horizontal">
+    <div class="field form-group">
+      Profissão
+      <%= f.select(:profissao_id, Profissao.where(:ativo => true).collect {|e| [e.profissao, e.id]}, { prompt: "Selecione a Profissão"}, :class => 'form-control', :required => true)%>
+    </div>
+    <div class="field form-group">
+      Profissional
+      <%= f.select(:profissional_id, Profissional.where(:ativo => true).collect {|e| [e.nome_completo, e.id]}, { prompt: "Selecione o Profissional"}, :class => 'form-control', :required => true)%>
+    </div>
+    
+    <div class="actions">
+      <%= button_tag(type: 'submit', class: "btn btn-sm btn-primary", title: 'Salvar') do %>
+      <i class="fa fa-save"></i>
+      <% end %>
+    </div>
+  </form>
+<% end %>
