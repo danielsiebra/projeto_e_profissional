@@ -1,6 +1,21 @@
-<%= form_tag :controller => "buscas_profissionais", :action => "index" do %>
-    <%= text_field_tag :profissionais, nil, placeholder: "Buscar profissionais", class: "form-control set_datepicker" %>
-    <%= button_tag(type: 'submit', class: "btn btn-md btn-primary", title: 'Consultar') do %>
-          <i class="fa fa-search"></i>
-    <% end %>
-<% end %>
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-content">
+					<h2>
+						E-Profissional:
+					</h2>
+					<div class="input-group-btn">
+						<%= form_tag :controller => "buscas_profissionais", :action => "buscar_profissional", :method => "post" do %>
+						<%= text_field_tag :buscar_profissionais, nil, placeholder: "Buscar por Profissões ou Profissionais", class: "form-control set_datepicker" %>
+						<%= button_tag(type: 'submit', class: "btn btn-md btn-primary", title: 'Consultar') do %>
+					          <i class="fa fa-search"></i>
+					    <% end %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

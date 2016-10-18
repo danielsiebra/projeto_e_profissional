@@ -1,1 +1,82 @@
-<%= render "profissionais" %>
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+	    <div class="col-lg-12">
+	        <div class="ibox float-e-margins">
+	            <div class="ibox-content">
+	            	<h2>
+						E-Profissional:
+					</h2>
+					<div class="input-group-btn">
+						<%= form_tag :controller => "buscas_profissionais", :action => "buscar_profissional", :method => "post" do %>
+						<%= text_field_tag :buscar_profissionais, nil, placeholder: "Buscar por Profissões ou Profissionais", class: "form-control set_datepicker" %>
+						<%= button_tag(type: 'submit', class: "btn btn-md btn-primary", title: 'Consultar') do %>
+					          <i class="fa fa-search"></i>
+					    <% end %>
+						<% end %>
+					</div>
+	                <small>Aproximadamente <%= @nome_completo.count %> resultados (0.52 seconds)</small>
+	            <div class="hr-line-dashed"></div>
+	            <div class="search-result">
+	                <%
+	                	nome_completo = Array.new
+					    nome_comercial = Array.new
+					    whatsapp = Array.new
+					    celular = Array.new
+					    email = Array.new
+					    endereco = Array.new
+					%>
+	            	<% @nome_completo.each do |nome| %>
+	                <h3><a href="#"><%= "#{nome}" %></a></h3>
+	                <% end %>
+	                <% @email.each do |email| %>
+	                <a href="#" class="search-link"><%= "#{email}" %></a>
+	                <% end %>
+	                <p>
+	                    <% @busca.each do |p| %>
+	                    	<% 	
+	                    		nome_comercial.push(p.nome_comercial)
+	                    		whatsapp.push(p.whatsapp)
+	                    		celular.push(p.celular)
+	                    		endereco.push(p.endereco)
+	                    	%>
+							<tr>
+						        <td><%#= p.nome_completo %></td>
+						        <b>Nome Comercial:</b>
+						        <% nome_comercial.each do |nome| %>
+						        	<td><%=nome %></td>
+						        <% end %>
+						        <br>
+						        <b>WhatsApp:</b>
+						        	<%=whatsapp.each do |whats| %>
+						        		<td><%=whats %></td>
+						        	<% end %>
+						        <br>
+						        <b>Celular:</b>
+						        	<%=celular.each do |cel| %>
+						        		<td><%=cel %></td>
+						        	<% end %>
+						        <br>
+						        <td><%#= p.email %></td>
+						        <b>Endereço:</b>
+						        	<%=endereco.each do |ende| %>
+						        		<td><%=ende %></td>
+						        	<% end %>						    
+							</tr>     
+						<% end %>
+	                </p>
+	            </div>
+	            </div>
+	            <div class="hr-line-dashed"></div>
+	            <div class="text-center">
+	                <div class="btn-group">
+	                    <button class="btn btn-white" type="button"><i class="fa fa-chevron-left"></i></button>
+	                    <button class="btn btn-white">1</button>
+	                    <button class="btn btn-white" type="button"><i class="fa fa-chevron-right"></i> </button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+

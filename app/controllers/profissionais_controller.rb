@@ -56,7 +56,7 @@ class ProfissionaisController < ApplicationController
   def destroy
     @profissional.update(ativo: false)
     respond_to do |format|
-      format.html { redirect_to profissionais_url }
+      format.html { redirect_to profissionais_url, notice: 'Profissional deletado com sucesso!' }
       format.json { head :no_content }
     end
   end

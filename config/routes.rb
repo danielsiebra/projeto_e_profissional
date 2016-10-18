@@ -7,7 +7,7 @@ Myapp::Application.routes.draw do
   resources :buscas_profissionais
   # You can have the root of your site routed with "root"
   root to: 'buscas_profissionais#index'
-
+  post "buscas_profissionais/buscar_profissional"
   # All routes
   get "dashboards/dashboard_1"
   get "dashboards/dashboard_2"

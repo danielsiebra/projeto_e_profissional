@@ -23,23 +23,42 @@ class BuscasProfissionaisController < ApplicationController
 
   # POST /buscas_profissionais
   # POST /buscas_profissionais.json
-  def create
-    @profissionais = params[:profissionais]
+  def buscar_profissional
+    @buscar_profissionais = params[:buscar_profissionais]
+    
     @nome_completo = Array.new
-    @profissao = Array.new
+    @nome_comercial = Array.new
+    @whatsapp = Array.new
+    @celular = Array.new
+    @email = Array.new
+    @endereco = Array.new
+    # if !buscar_profissionais.blank?
+    @busca = Profissional.select(:nome_completo, :nome_comercial, :whatsapp, :celular, :email, :endereco).where("ativo = ? AND nome_completo ILIKE ?", true, "%#{@buscar_profissionais}%") 
+    @busca.each do |p|
+      @nome_completo.push(p.nome_completo)
+      @nome_comercial.push(p.nome_comercial)
+      @whatsapp.push(p.whatsapp)
+      @celular.push(p.celular)
+      @email.push(p.email)
+      @endereco.push(p.endereco)
+    end 
+    # @nome_completo = Array.new
+    # @nome_comercial = Array.new
+    # @whatsapp = Array.new
+    # @celular = Array.new
+    # @email = Array.new
+    # @endereco = Array.new  
+    # else 
+    #   flash[:notice] = "Sem profissionais com esse nome."
+    #   flash[:tipo_msg] = "Erro."
+    # end
 
-    if !@profissionais.blank?
-      @nome_profissional = Profissional.where("nome_completo ILIKE ?", @profissionais).order(:nome_completo)
-      render "exibir_busca"
-      if !@nome_profissional.blank?     
-        @nome_profissional.each do |p|
-          @nome_completo.push(p.nome_completo)
-        end
-      else 
-        flash[:notice] = "Sem profissionais com esse nome"
-        flash[:tipo_msg] = "erro"
-      end
-    end
+    render  "buscas_profissionais/exibir_busca"
+    # @nome_comercial = Array.new
+    # @whatsapp = Array.new
+    # @celular = Array.new
+    # @email = Array.new
+    # @endereco = Array.new
   end
 
   # PATCH/PUT /buscas_profissionais/1
@@ -66,6 +85,14 @@ class BuscasProfissionaisController < ApplicationController
     end
   end
 
+     # def buscar_profissional
+     #  profissionais = params[:buscar_profissionais]
+     #  @busca = Profissional.select(:nome_completo, :nome_comercial, :whatsapp, :celular, :email, :endereco).where("nome_completo ILIKE ?", "%#{profissionais}%")
+     #  @nome_completo = Array.new
+     #  @profissao = Array.new
+     #  render  "buscas_profissionais/exibir_busca"
+      
+    # end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_buscas_profissional
@@ -76,4 +103,5 @@ class BuscasProfissionaisController < ApplicationController
     def buscas_profissional_params
       params[:buscas_profissional]
     end
+
 end
