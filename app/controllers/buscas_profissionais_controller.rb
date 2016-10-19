@@ -24,33 +24,47 @@ class BuscasProfissionaisController < ApplicationController
   # POST /buscas_profissionais
   # POST /buscas_profissionais.json
   def buscar_profissional
-    @buscar_profissionais = params[:buscar_profissionais]
+    @buscar_profissionais = "programador"
     
+    # if !buscar_profissionais.blank?
+    @busca = Profissional.select(:nome_completo, :nome_comercial, :whatsapp, :celular, :email, :endereco).where("ativo = ? AND nome_completo ILIKE ?", true, "%#{@buscar_profissionais}%") 
+    @buscar_profissao = ProfissoesProfissional.select(:profissao_id, :profissional_id).joins(profissional: [{:nome_completo, :nome_comercial, :whatsapp, :celular, :email, :endereco}], :profissao => :profissao).where("profissoes_profissionais.ativo = ? AND profissao.profissao ILIKE ?", true, "%#{@buscar_profissoes}%")
+    raise @buscar_profissao.inspect
+
     @nome_completo = Array.new
     @nome_comercial = Array.new
     @whatsapp = Array.new
     @celular = Array.new
     @email = Array.new
     @endereco = Array.new
-    # if !buscar_profissionais.blank?
-    @busca = Profissional.select(:nome_completo, :nome_comercial, :whatsapp, :celular, :email, :endereco).where("ativo = ? AND nome_completo ILIKE ?", true, "%#{@buscar_profissionais}%") 
-    @busca.each do |p|
-      @nome_completo.push(p.nome_completo)
-      @nome_comercial.push(p.nome_comercial)
-      @whatsapp.push(p.whatsapp)
-      @celular.push(p.celular)
-      @email.push(p.email)
-      @endereco.push(p.endereco)
-    end 
+    @profissao = Array.new
+
+    # if @busca
+    #   @busca.each do |buscar|
+    #     @nome_completo.push(buscar.nome_completo)
+    #     @nome_comercial.push(buscar.nome_comercial)
+    #     @whatsapp.push(buscar.whatsapp)
+    #     @celular.push(buscar.celular)
+    #     @email.push(buscar.email)
+    #     @endereco.push(buscar.endereco)
+    #   end
+    # elsif @buscar_profissao
+    #   @buscar_profissao.each do |profissao|
+    #     @profissao.push(profissao.profissao)
+    #   end
+    # else 
+    #    flash[:notice] = "Sem profissoes ou profissionais com esse nome."
+    #    flash[:tipo_msg] = "Erro."
+    # end 
+
+
     # @nome_completo = Array.new
     # @nome_comercial = Array.new
     # @whatsapp = Array.new
     # @celular = Array.new
     # @email = Array.new
     # @endereco = Array.new  
-    # else 
-    #   flash[:notice] = "Sem profissionais com esse nome."
-    #   flash[:tipo_msg] = "Erro."
+     
     # end
 
     render  "buscas_profissionais/exibir_busca"
@@ -96,7 +110,7 @@ class BuscasProfissionaisController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_buscas_profissional
-      @buscas_profissional = BuscasProfissional.find(params[:id])
+      
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

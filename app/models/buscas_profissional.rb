@@ -1,6 +1,6 @@
 class BuscasProfissional < ActiveRecord::Base
-	has_many :areas_profissional
-	has_many :profissao
-	has_many :profissional
-	has_many :profissoes_profissional
+	belongs_to :areas_profissional
+	belongs_to :profissao
+	belongs_to :profissional
+	belongs_to :profissoes_profissional
 end

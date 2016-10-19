@@ -1,5 +1,5 @@
 class ProfissoesProfissional < ActiveRecord::Base
-  belongs_to :profissional
-  belongs_to :profissao
-  belongs_to :buscas_profissional
+  has_many :profissional
+  has_many :profissao
+  has_many :buscas_profissional
 end
