@@ -1,3 +1,13 @@
+<script type="text/javascript" src="jquery-1.2.6.pack.js"></script>
+<script type="text/javascript" src="jquery.maskedinput-1.1.4.pack.js"/></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#profissional_cep").mask("99.999-999");
+    $("#profissional_whatsapp").mask("(99)99999-9999");
+    $("#celular").mask("(99)99999-9999");
+  });
+</script>
+
 <%= form_for(@profissional) do |f| %>
   <% if @profissional.errors.any? %>
     <div id="error_explanation">
@@ -21,11 +31,11 @@
     </div>
     <div class="field form-group">
       Whatsapp
-      <%= f.number_field :whatsapp, :class => 'form-control' %>
+      <%= f.text_field :whatsapp, :class => 'form-control' %>
     </div>
     <div class="field form-group">
       Celular
-      <%= f.number_field :celular, :class => 'form-control' %>
+      <%= f.text_field :celular, :class => 'form-control', :id => 'celular' %>
     </div>
     <div class="field form-group">
       E-mail

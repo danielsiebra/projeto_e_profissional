@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161014180352) do
+ActiveRecord::Schema.define(version: 20161020194258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,9 +24,10 @@ ActiveRecord::Schema.define(version: 20161014180352) do
   end
 
   create_table "buscas_profissionais", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "pesquisa"
+    t.integer  "profissional_id"
   end
 
   create_table "profissionais", force: :cascade do |t|
@@ -34,13 +35,21 @@ ActiveRecord::Schema.define(version: 20161014180352) do
     t.integer  "profissoes_profissional_id"
     t.string   "nome_completo"
     t.string   "nome_comercial"
-    t.integer  "whatsapp"
-    t.integer  "celular"
+    t.string   "whatsapp"
+    t.string   "celular"
     t.string   "email"
     t.text     "endereco"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
     t.boolean  "ativo",                      default: true
+    t.integer  "buscas_profissional_id"
+    t.string   "cep"
+    t.string   "rua"
+    t.string   "complemento"
+    t.string   "bairro"
+    t.string   "numero"
+    t.string   "cidade"
+    t.string   "estado"
   end
 
   add_index "profissionais", ["areas_profissional_id"], name: "index_profissionais_on_areas_profissional_id", using: :btree

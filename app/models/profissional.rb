@@ -1,7 +1,8 @@
 class Profissional < ActiveRecord::Base
-  belongs_to :areas_profissional
-  belongs_to :profissoes_profissional
-  belongs_to :buscas_profissional
+  has_many :profissoes_profissional
+  validates :nome_completo, 
+			  presence: true, 
+			  length: { minimum: 3 }
   validates :nome_completo,
 	 		  uniqueness: true
 end

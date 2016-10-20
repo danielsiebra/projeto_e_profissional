@@ -1,7 +1,9 @@
 class Profissao < ActiveRecord::Base
   belongs_to :areas_profissional
-  belongs_to :profissoes_profissional
-  belongs_to :buscas_profissional
-  validadetes :profissao,
-	 		  uniqueness: true
+  has_many :profissoes_profissional
+  	validates :profissao, 
+			  presence: true, 
+			  length: { minimum: 3 }
+
+  	validates :profissao, uniqueness: true
 end

@@ -9,7 +9,7 @@
             </div>
             <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 ">
               <div style="text-align:center">
-                <h2>Profissionais <span class="badge badge-info"><%= @profissionais.count %></span></h2>
+                <h2>Profissionais <span class="btn btn-info m-r-sm"><%= @profissionais.count %></span></h2>
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
                   <td><%= profissional.endereco %></td>
                 <td><%= link_to '', profissional, :class => 'btn btn-primary fa fa-search', :title => 'Visualizar' %></td>
                 <td><%= link_to '', edit_profissional_path(profissional), :class => 'btn btn-warning fa fa-edit', :title => 'Editar' %></td>
-                <td><%= link_to '', profissional, method: :delete, data: { confirm: 'Tem certeza?' }, :class => 'btn btn-danger fa fa-trash', :title => 'Deletar' %></td>
+                <td><%= link_to '', profissional, method: :delete, data: { confirm: 'Você tem certeza?' }, :class => 'btn btn-danger fa fa-trash',:title => 'Apagar' %></td>
               </tr>
               <% end %>
             </tbody>

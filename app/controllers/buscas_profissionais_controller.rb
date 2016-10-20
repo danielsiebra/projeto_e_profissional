@@ -24,55 +24,32 @@ class BuscasProfissionaisController < ApplicationController
   # POST /buscas_profissionais
   # POST /buscas_profissionais.json
   def buscar_profissional
-    @buscar_profissionais = "programador"
-    
+    @buscar_profissionais = params[:buscar_profissionais]
     # if !buscar_profissionais.blank?
-    @busca = Profissional.select(:nome_completo, :nome_comercial, :whatsapp, :celular, :email, :endereco).where("ativo = ? AND nome_completo ILIKE ?", true, "%#{@buscar_profissionais}%") 
-    @buscar_profissao = ProfissoesProfissional.select(:profissao_id, :profissional_id).joins(profissional: [{:nome_completo, :nome_comercial, :whatsapp, :celular, :email, :endereco}], :profissao => :profissao).where("profissoes_profissionais.ativo = ? AND profissao.profissao ILIKE ?", true, "%#{@buscar_profissoes}%")
-    raise @buscar_profissao.inspect
-
-    @nome_completo = Array.new
-    @nome_comercial = Array.new
-    @whatsapp = Array.new
-    @celular = Array.new
+    # params[:buscar_profissionais]
+    @busca = ProfissoesProfissional.find_by_sql("SELECT pes.profissao, pais.nome_completo, pais.nome_comercial, pais.whatsapp, pais.celular, pais.email, pais.endereco FROM projeto_e_profissional.profissoes_profissionais as pp INNER JOIN projeto_e_profissional.profissoes as pes ON pes.id = pp.profissao_id INNER JOIN projeto_e_profissional.profissionais as pais ON pais.id = pp.profissional_id WHERE pes.ativo = true AND pes.profissao ILIKE '%#{@buscar_profissionais}%' OR pais.nome_completo ILIKE '%#{@buscar_profissionais}%'")
+    # @busca = ProfissoesProfissional.select("pes.profissao, pais.nome_completo, pais.nome_comercial, pais.whatsapp, pais.celular, pais.email, pais.endereco as pp joins projeto_e_profissional.profissoes as pes ON pes.id = pp.profissao_id joins projeto_e_profissional.profissionais as pais ON pais.id = pp.profissional_id where profissoes.ativo = ? AND profissoes.profissao ILIKE ?", true, "%#{@buscar_profissionais}%") 
+    #@buscar_profissao = Profissional.select(:nome_completo, :nome_comercial, :whatsapp, :celular, :email, :endereco).joins(:profissoes_profissional).select(:profissao_id).where("profissoes_profissionais.ativo = ? AND profissoes.profissao ILIKE ?", true, "%#{@buscar_profissionais}%")
+  
     @email = Array.new
+    @celular = Array.new
+    @whatsapp = Array.new
     @endereco = Array.new
     @profissao = Array.new
+    @nome_completo = Array.new
+    @nome_comercial = Array.new
 
-    # if @busca
-    #   @busca.each do |buscar|
-    #     @nome_completo.push(buscar.nome_completo)
-    #     @nome_comercial.push(buscar.nome_comercial)
-    #     @whatsapp.push(buscar.whatsapp)
-    #     @celular.push(buscar.celular)
-    #     @email.push(buscar.email)
-    #     @endereco.push(buscar.endereco)
-    #   end
-    # elsif @buscar_profissao
-    #   @buscar_profissao.each do |profissao|
-    #     @profissao.push(profissao.profissao)
-    #   end
-    # else 
-    #    flash[:notice] = "Sem profissoes ou profissionais com esse nome."
-    #    flash[:tipo_msg] = "Erro."
-    # end 
-
-
-    # @nome_completo = Array.new
-    # @nome_comercial = Array.new
-    # @whatsapp = Array.new
-    # @celular = Array.new
-    # @email = Array.new
-    # @endereco = Array.new  
-     
-    # end
-
+    @busca.each do |buscar|
+      # @profissao.push(buscar.profiss.profissao)
+      @nome_completo.push(buscar.nome_completo)
+      @nome_comercial.push(buscar.nome_comercial)
+      @whatsapp.push(buscar.whatsapp)
+      @celular.push(buscar.celular)
+      @email.push(buscar.email)
+      @endereco.push(buscar.endereco)
+    
+    end
     render  "buscas_profissionais/exibir_busca"
-    # @nome_comercial = Array.new
-    # @whatsapp = Array.new
-    # @celular = Array.new
-    # @email = Array.new
-    # @endereco = Array.new
   end
 
   # PATCH/PUT /buscas_profissionais/1
