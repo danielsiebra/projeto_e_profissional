@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Solicitacoes Avaliacoes Servicos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome cliente</th>
+      <th>Email</th>
+      <th>Papel</th>
+      <th>Usuario</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @solicitacoes_avaliacoes_servicos.each do |solicitacoes_avaliacoes_servico| %>
+      <tr>
+        <td><%= solicitacoes_avaliacoes_servico.nome_cliente %></td>
+        <td><%= solicitacoes_avaliacoes_servico.email %></td>
+        <td><%= solicitacoes_avaliacoes_servico.papel %></td>
+        <td><%= solicitacoes_avaliacoes_servico.usuario %></td>
+        <td><%= link_to 'Show', solicitacoes_avaliacoes_servico %></td>
+        <td><%= link_to 'Edit', edit_solicitacoes_avaliacoes_servico_path(solicitacoes_avaliacoes_servico) %></td>
+        <td><%= link_to 'Destroy', solicitacoes_avaliacoes_servico, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Solicitacoes avaliacoes servico', new_solicitacoes_avaliacoes_servico_path %>

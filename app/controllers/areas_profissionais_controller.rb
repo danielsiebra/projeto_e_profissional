@@ -1,6 +1,6 @@
 class AreasProfissionaisController < ApplicationController
   before_action :set_areas_profissional, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_model!
   # GET /areas_profissionais
   # GET /areas_profissionais.json
   def index

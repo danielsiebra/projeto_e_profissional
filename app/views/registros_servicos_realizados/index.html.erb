@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Registros Servicos Realizados</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Profissional</th>
+      <th>Titulo servico</th>
+      <th>Nome cliente</th>
+      <th>Email cliente</th>
+      <th>Descricao servico</th>
+      <th>De</th>
+      <th>Ate</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @registros_servicos_realizados.each do |registros_servicos_realizado| %>
+      <tr>
+        <td><%= registros_servicos_realizado.profissional %></td>
+        <td><%= registros_servicos_realizado.titulo_servico %></td>
+        <td><%= registros_servicos_realizado.nome_cliente %></td>
+        <td><%= registros_servicos_realizado.email_cliente %></td>
+        <td><%= registros_servicos_realizado.descricao_servico %></td>
+        <td><%= registros_servicos_realizado.de %></td>
+        <td><%= registros_servicos_realizado.ate %></td>
+        <td><%= link_to 'Show', registros_servicos_realizado %></td>
+        <td><%= link_to 'Edit', edit_registros_servicos_realizado_path(registros_servicos_realizado) %></td>
+        <td><%= link_to 'Destroy', registros_servicos_realizado, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Registros servicos realizado', new_registros_servicos_realizado_path %>

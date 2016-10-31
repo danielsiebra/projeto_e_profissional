@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome cliente:</strong>
+  <%= @solicitacoes_avaliacoes_servico.nome_cliente %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @solicitacoes_avaliacoes_servico.email %>
+</p>
+
+<p>
+  <strong>Papel:</strong>
+  <%= @solicitacoes_avaliacoes_servico.papel %>
+</p>
+
+<p>
+  <strong>Usuario:</strong>
+  <%= @solicitacoes_avaliacoes_servico.usuario %>
+</p>
+
+<%= link_to 'Edit', edit_solicitacoes_avaliacoes_servico_path(@solicitacoes_avaliacoes_servico) %> |
+<%= link_to 'Back', solicitacoes_avaliacoes_servicos_path %>

@@ -1,0 +1,50 @@
+<%= render 'form' %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-push-1">
+			<p>&nbsp; 
+				<small>
+					</br>
+					Aproximadamente 
+					<b><%= 
+						if !@nome_completo.blank?
+							@nome_completo.count
+						else 
+							@profissao.count
+						end 
+					%></b>
+					resultados (0.23 seconds)
+				</small>
+				<br>
+			<div class="search-result">		            	
+				<% @busca.each do |buscar| 
+					%>
+					<h3><a href="/profissionais/<%="#{buscar.id}"%>"><%= "#{buscar.nome_completo}" %></a></h3>
+					<a href="#" class="search-link"><%= "#{buscar.email}" %></a>
+					<tbody class="table table-hover">
+						<p>	
+							<tr>
+								<b>Profissão:</b>
+								<td><%=buscar.profissao %></td>
+								<br>
+								<b>Nome Comercial:</b>
+								<td><%=buscar.nome_comercial %></td>
+								<br>
+								<b>WhatsApp:</b>
+								<td><%=buscar.whatsapp %></td>
+								<br>
+								<b>Celular:</b>
+								<td><%=buscar.celular %></td>
+								<br>
+								<b>Endereço:</b>
+								<td><%=buscar.endereco %></td>				    
+							</tr>
+						</p>
+						<br>
+					</p>
+					</tbody>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

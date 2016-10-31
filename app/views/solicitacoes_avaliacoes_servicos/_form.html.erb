@@ -1,0 +1,33 @@
+<%= form_for(@solicitacoes_avaliacoes_servico) do |f| %>
+  <% if @solicitacoes_avaliacoes_servico.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@solicitacoes_avaliacoes_servico.errors.count, "error") %> prohibited this solicitacoes_avaliacoes_servico from being saved:</h2>
+
+      <ul>
+      <% @solicitacoes_avaliacoes_servico.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome_cliente %><br>
+    <%= f.text_field :nome_cliente %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :papel %><br>
+    <%= f.text_field :papel %>
+  </div>
+  <div class="field">
+    <%= f.label :usuario_id %><br>
+    <%= f.text_field :usuario_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

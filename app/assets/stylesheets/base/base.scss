@@ -1,15 +1,43 @@
 body {
   font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #2f4050;
+  background-color: #FAFAFA;
   font-size: 13px;
   color: $text-color;
   overflow-x: hidden;
 
 }
 
+.lsb {
+    background: transparent none repeat scroll 0 0;
+    border: 0 none;
+    font-size: 0;
+    height: 30px;
+    outline: 0 none;
+    width: 100%;
+}
+
+.sbico-c {
+    background: transparent none repeat scroll 0 0;
+    border: 0 none;
+    float: right;
+    height: 44px;
+    line-height: 44px;
+    margin-top: -1px;
+    outline: 0 none;
+    padding-right: 16px;
+    position: relative;
+    top: -1px;
+}
+
 html, body {
   height: 100%;
+  background-color: #FAFAFA;
 
+}
+#viewport {
+  min-height:100%;
+  position:relative;
+  width:100%
 }
 
 body.full-height-layout #wrapper,
@@ -427,7 +455,7 @@ img.circle-border {
 
 .branding {
   float: left;
-  color: #FFFFFF;
+  color: #FFFFFF;.
   font-size: 18px;
   font-weight: 600;
   padding: 17px 20px;
@@ -636,7 +664,7 @@ table.table-mail tr td {
 /* BACKGROUNDS */
 
 .gray-bg {
-  background-color: $gray;
+  background-color: #FAFAFA;
 }
 
 .white-bg {

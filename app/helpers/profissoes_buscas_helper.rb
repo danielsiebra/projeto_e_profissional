@@ -1,0 +1,2 @@
+module ProfissoesBuscasHelper
+end

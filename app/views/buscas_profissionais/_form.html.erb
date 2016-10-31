@@ -1,0 +1,26 @@
+<div class="row" style="padding-top: 10px; padding-bottom: 0px ; background: #f1f1f1;">
+	<div class="col-md-2">
+		
+			<a href="/buscas_profissionais" title="Ir para a página inicial do Profissionais Já!"><%= image_tag("mini-logo.png") %></a>
+		
+	</div>
+	<%= form_tag :controller => "buscas_profissionais", :action => "buscar_profissional", :method => "post" do %>
+		<div class="col-md-3 col-md-pull" style="padding-left: -100px;">
+			<p>
+				<%= text_field_tag :buscar_profissionais, nil, placeholder: "Digite aqui o nome do profissional", class: "form-control set_datepicker", style: "box-shadow: 3px 2px 2px #ccc; padding-top: 5px; padding-bottom: 5px ;" %>
+			</p>
+		</div>
+		<div class="col-md-3 ">
+			<p>
+				<%= text_field_tag :buscar_profissoes, nil, placeholder: "Digite aqui a atividade do profissional", class: "form-control set_datepicker", style: "box-shadow: 3px 2px 2px #ccc; padding-top: 5px; padding-bottom: 5px ;" %>
+			</p>
+		</div>		
+		<div class="col-md-3">
+			<p>
+				<%= button_tag(type: 'submit', class: "btn", title: 'Pesquisar', style: "box-shadow: 3px 2px 2px #ccc;") do %>
+					<i class="fa fa-search"></i>
+				<% end %>
+			</p>
+		</div>
+	<% end %>
+</div>

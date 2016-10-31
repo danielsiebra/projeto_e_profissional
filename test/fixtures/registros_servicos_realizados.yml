@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  profissional_id: 
+  titulo_servico: MyString
+  nome_cliente: MyString
+  email_cliente: MyString
+  descricao_servico: MyText
+  de: 2016-10-28
+  ate: 2016-10-28
+
+two:
+  profissional_id: 
+  titulo_servico: MyString
+  nome_cliente: MyString
+  email_cliente: MyString
+  descricao_servico: MyText
+  de: 2016-10-28
+  ate: 2016-10-28

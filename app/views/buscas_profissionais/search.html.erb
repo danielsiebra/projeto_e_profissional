@@ -1,0 +1,42 @@
+<%= render 'form' %>
+</br>
+<div class="col-md-6 col-md-push-1">
+	<h3>
+		<p>Sua pesquisa -&nbsp;
+		<b>
+			<%= "#{@buscar_profissionais}" %>
+		</b>
+		 - não encontrou nenhum resultado correspondente.
+		</p>
+		</br>
+		<b>Sugestões:</b>
+		</br>
+		<b>*</b> Certifique-se de que todas as palavras estejam escritas corretamente.
+		</br>
+		<b>*</b> Tente nome de profissionais diferentes.
+		</br>
+		<b>*</b> Tente profissões mais genéricas.
+	</h3>
+</div>
+
+<div id="right-sidebar">
+    <div class="sidebar-container">
+        <ul class="nav nav-tabs navs-3">
+            <li>
+                <%= link_to "Buscar", buscas_profissionais_path %>
+            </li>
+            <li>
+                <%= link_to "Áreas", areas_profissionais_path %>
+            </li>
+            <li>
+                <%= link_to "Profissionais", profissionais_path %>
+            </li>
+            <li>
+                <%= link_to "Profissões", profissoes_path %>
+            </li>
+            <li>
+                <%= link_to "Profissões dos profissionais", profissoes_profissionais_path %>
+            </li>
+        </ul>
+    </div>
+</div>

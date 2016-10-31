@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  preco: MyString
+  prazo: MyString
+  nome: MyString
+  profissional_id: 
+  registros_servicos_realizado_id: 
+
+two:
+  preco: MyString
+  prazo: MyString
+  nome: MyString
+  profissional_id: 
+  registros_servicos_realizado_id: 

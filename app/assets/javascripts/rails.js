@@ -1,0 +1,1 @@
+config.action_view.javascript_expansions[:defaults] = %w(dispatcher jquery-1.4.2 rails)

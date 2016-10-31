@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Preco:</strong>
+  <%= @servico.preco %>
+</p>
+
+<p>
+  <strong>Prazo:</strong>
+  <%= @servico.prazo %>
+</p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @servico.nome %>
+</p>
+
+<p>
+  <strong>Profissional:</strong>
+  <%= @servico.profissional %>
+</p>
+
+<p>
+  <strong>Registros servicos realizado:</strong>
+  <%= @servico.registros_servicos_realizado %>
+</p>
+
+<%= link_to 'Edit', edit_servico_path(@servico) %> |
+<%= link_to 'Back', servicos_path %>

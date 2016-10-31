@@ -1,5 +1,13 @@
 Myapp::Application.routes.draw do
 
+  devise_for :modeis
+  resources :servicos
+  resources :avaliacoes_servicos
+  resources :clientes
+  resources :solicitacoes_avaliacoes_servicos
+  resources :usuarios
+  resources :registros_servicos_realizados
+  resources :profissoes_buscas
   resources :profissionais
   resources :profissoes_profissionais
   resources :profissoes
@@ -8,7 +16,7 @@ Myapp::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root to: 'buscas_profissionais#index'
   post "buscas_profissionais/buscar_profissional"
-  post "buscas_profissionais/busca_profissional"
+  post "buscas_profissionais/buscar_profissao"
   # All routes
   get "dashboards/dashboard_1"
   get "dashboards/dashboard_2"

@@ -31,7 +31,7 @@
             <tbody class="table table-hover">
               <% @profissoes_profissionais.each do |profissoes_profissional| %>
                 <tr>
-                  <td><%= Profissional.find(profissoes_profissional.profissional_id).nome_completo if !profissoes_profissional.profissional_id.nil? %></td>
+                  <td><%= Profissional.find(profissoes_profissional.profissional_id).nome_completo %></td>
 
 
                   <td><%= Profissao.find(profissoes_profissional.profissao_id).profissao if !profissoes_profissional.profissao_id.nil? %></td>

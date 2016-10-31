@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Profissional:</strong>
+  <%= @registros_servicos_realizado.profissional %>
+</p>
+
+<p>
+  <strong>Titulo servico:</strong>
+  <%= @registros_servicos_realizado.titulo_servico %>
+</p>
+
+<p>
+  <strong>Nome cliente:</strong>
+  <%= @registros_servicos_realizado.nome_cliente %>
+</p>
+
+<p>
+  <strong>Email cliente:</strong>
+  <%= @registros_servicos_realizado.email_cliente %>
+</p>
+
+<p>
+  <strong>Descricao servico:</strong>
+  <%= @registros_servicos_realizado.descricao_servico %>
+</p>
+
+<p>
+  <strong>De:</strong>
+  <%= @registros_servicos_realizado.de %>
+</p>
+
+<p>
+  <strong>Ate:</strong>
+  <%= @registros_servicos_realizado.ate %>
+</p>
+
+<%= link_to 'Edit', edit_registros_servicos_realizado_path(@registros_servicos_realizado) %> |
+<%= link_to 'Back', registros_servicos_realizados_path %>

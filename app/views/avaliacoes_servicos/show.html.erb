@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Comentario:</strong>
+  <%= @avaliacoes_servico.comentario %>
+</p>
+
+<p>
+  <strong>Papel:</strong>
+  <%= @avaliacoes_servico.papel %>
+</p>
+
+<p>
+  <strong>Avaliacao:</strong>
+  <%= @avaliacoes_servico.avaliacao %>
+</p>
+
+<%= link_to 'Edit', edit_avaliacoes_servico_path(@avaliacoes_servico) %> |
+<%= link_to 'Back', avaliacoes_servicos_path %>

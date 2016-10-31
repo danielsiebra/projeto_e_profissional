@@ -21,32 +21,21 @@
 <body>
 
 <!-- Skin configuration box -->
-<!-- <%= render 'layouts/skinconfig' %> -->
+<!-- <%= render 'layouts/skinconfig' %>
 
     <!-- Wrapper-->
     <div id="wrapper" class="<%= params[:controller] %>.<%= params[:action] %>">
+        <!-- Page wrapper -->
+        <%= render 'layouts/topnavbar' %>
 
-        <!-- Navigation -->
-        <%#= render 'layouts/navigation' %>
+        <!-- Main view  -->
+        <%= yield %>
 
-        <!-- Page wraper -->
-        <div id="page-wrapper" class="gray-bg <%= @extra_class %>">
-
-            <!-- Page wrapper -->
-            <%= render 'layouts/topnavbar' %>
-
-            <!-- Main view  -->
-            <%= yield %>
-
-            <!-- Footer -->
-            <%= render 'layouts/footer' %>
-
-        </div>
-        <!-- End page wrapper-->
+        <!-- Footer -->
+        <%= render 'layouts/footer' %>
 
         <!-- Right sidebar -->
         <%= render 'layouts/rightsidebar' %>
-
     </div>
     <!-- End wrapper-->
 

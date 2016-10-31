@@ -1,6 +1,6 @@
 class BuscasProfissionaisController < ApplicationController
   before_action :set_buscas_profissional, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_model!
   # GET /buscas_profissionais
   # GET /buscas_profissionais.json
   def index
@@ -22,14 +22,17 @@ class BuscasProfissionaisController < ApplicationController
   end
 
   # POST /buscas_profissionais
-  # POST /buscas_profissionais.json
+  # POST /buscas_profissionais.json 
   def buscar_profissional
     @buscar_profissionais = params[:buscar_profissionais]
+    @buscar_profissoes = params[:buscar_profissoes]
+    @buscar_profissoes_profissionais = params[:buscar_profissoes_profissionais]
+
     # if !buscar_profissionais.blank?
     # params[:buscar_profissionais]
-    @busca = ProfissoesProfissional.find_by_sql("SELECT pes.profissao, pais.nome_completo, pais.nome_comercial, pais.whatsapp, pais.celular, pais.email, pais.endereco FROM projeto_e_profissional.profissoes_profissionais as pp INNER JOIN projeto_e_profissional.profissoes as pes ON pes.id = pp.profissao_id INNER JOIN projeto_e_profissional.profissionais as pais ON pais.id = pp.profissional_id WHERE pes.ativo = true AND pes.profissao ILIKE '%#{@buscar_profissionais}%' OR pais.nome_completo ILIKE '%#{@buscar_profissionais}%'")
+    #@busca = ProfissoesProfissional.find_by_sql("SELECT pes.profissao, pais.id, pais.nome_completo, pais.nome_comercial, pais.whatsapp, pais.celular, pais.email, pais.endereco FROM projeto_e_profissional.profissoes_profissionais as pp INNER JOIN projeto_e_profissional.profissoes as pes ON pes.id = pp.profissao_id INNER JOIN projeto_e_profissional.profissionais as pais ON pais.id = pp.profissional_id WHERE pes.ativo = true AND pes.profissao ILIKE '%#{@buscar_profissionais}%' OR pais.nome_completo ILIKE '%#{@buscar_profissionais}%'")
     # @busca = ProfissoesProfissional.select("pes.profissao, pais.nome_completo, pais.nome_comercial, pais.whatsapp, pais.celular, pais.email, pais.endereco as pp joins projeto_e_profissional.profissoes as pes ON pes.id = pp.profissao_id joins projeto_e_profissional.profissionais as pais ON pais.id = pp.profissional_id where profissoes.ativo = ? AND profissoes.profissao ILIKE ?", true, "%#{@buscar_profissionais}%") 
-    #@buscar_profissao = Profissional.select(:nome_completo, :nome_comercial, :whatsapp, :celular, :email, :endereco).joins(:profissoes_profissional).select(:profissao_id).where("profissoes_profissionais.ativo = ? AND profissoes.profissao ILIKE ?", true, "%#{@buscar_profissionais}%")
+    @busca = ProfissoesProfissional.find_by_sql("SELECT pes.profissao, pais.id, pais.nome_completo, pais.nome_comercial, pais.whatsapp, pais.celular, pais.email, pais.endereco FROM projeto_e_profissional.profissoes_profissionais as pp INNER JOIN projeto_e_profissional.profissoes as pes ON pes.id = pp.profissao_id INNER JOIN projeto_e_profissional.profissionais as pais ON pais.id = pp.profissional_id WHERE pes.ativo = true AND pes.profissao ILIKE '%#{@buscar_profissoes}%' AND pais.nome_completo ILIKE '%#{@buscar_profissionais}%'")
   
     @email = Array.new
     @celular = Array.new
@@ -40,16 +43,21 @@ class BuscasProfissionaisController < ApplicationController
     @nome_comercial = Array.new
 
     @busca.each do |buscar|
-      # @profissao.push(buscar.profiss.profissao)
+      @profissao.push(buscar.profissao)
       @nome_completo.push(buscar.nome_completo)
       @nome_comercial.push(buscar.nome_comercial)
       @whatsapp.push(buscar.whatsapp)
       @celular.push(buscar.celular)
       @email.push(buscar.email)
       @endereco.push(buscar.endereco)
-    
     end
-    render  "buscas_profissionais/exibir_busca"
+    if !@buscar_profissionais.blank?
+      render  "buscas_profissionais/exibir_profissional"
+    elsif @buscar_profissionais.blank?
+      render "buscas_profissionais/search"
+    else @buscar_profissionais.nil?
+      render "buscas_profissionais/search"
+    end
   end
 
   # PATCH/PUT /buscas_profissionais/1
