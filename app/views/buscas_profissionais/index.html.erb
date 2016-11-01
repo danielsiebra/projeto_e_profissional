@@ -1,3 +1,4 @@
+<%= render 'campo_busca' %>
 <div class="wrapper wrapper-content animated fadeInDown">
 	<div class="container">
 		<div class="row">
@@ -8,13 +9,14 @@
 				</center>
 				<br>
 				<%= form_tag :controller => "buscas_profissionais", :action => "buscar_profissional", :method => "post" do %>
-					<%= text_field_tag :buscar_profissionais, nil, placeholder: "Digite aqui o nome do profissional", class: "form-control set_datepicker", style: "box-shadow: 0px 2px 2px #ccc;" %></br>
+					<%= text_field_tag :buscar_profissionais, nil, placeholder: "Digite aqui o nome do profissional", class: "form-control set_datepicker", style: "box-shadow: 0px 2px 2px #ccc;", id: "nome" %></br>
 					
-					<%= text_field_tag :buscar_profissoes, nil, placeholder: "Digite aqui a atividade do profissional", class: "form-control set_datepicker", style: "box-shadow: 0px 2px 2px #ccc;" %>
+					<%= text_field_tag :buscar_profissoes, nil, placeholder: "Digite aqui a atividade do profissional", class: "form-control set_datepicker", style: "box-shadow: 0px 2px 2px #ccc;", id: "atividade" %>
 					</br>
 					<center>
 						<%= button_tag(type: 'submit', class: "btn btn-default", title: 'Pesquisar', style: "background:#F2F2F2;") do %>
 							Buscar
+
 						<% end %>
 					</center>
 				<% end %>

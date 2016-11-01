@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<% 
+	@profissionais = Profissional.select(:nome_completo, :nome_comercial).where("ativo=true")
+	@profissoes = Profissao.order(:profissao).distinct
+	@nome = Array.new
+	@comercial = Array.new
+	@profissao = Array.new
+	@profissionais.each do |p|
+		@nome.push(p.nome_completo)
+		@comercial.push(p.nome_comercial)
+		@profissional = @nome + @comercial
+		@profissoes.each do |r|
+			@profissao.push(r.profissao)
+%>
+			<script>
+			  $( function() {
+			    var availableTags = <%= raw @profissional %>;
+			    $( "#nome" ).autocomplete({
+			      source: availableTags
+			    });
+			  } );
+			</script>
+			<script>
+			  $( function() {
+			    var availableTags = <%= raw @profissao %>;
+			    $( "#atividade" ).autocomplete({
+			      source: availableTags
+			    });
+			  } );
+			</script>
+<%
+		end
+	end
+%>

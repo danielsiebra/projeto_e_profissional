@@ -15,36 +15,36 @@
 						%></b>
 						resultados (0.23 seconds)
 				</small>
-				<br>
-			<div class="search-result">		            	
-				<% @busca_profissao.each do |profissao| 
-					%>
-					<h3><a href="/profissoes"><%= "#{busca_profissao.nome_completo}" %></a></h3>
-					<a href="#" class="search-link"><%= "#{busca_profissao.email}" %></a>
-					<tbody class="table table-hover">
-						<p>	
-							<tr>
-								<b>Profissão:</b>
-								<td><%=profissao.profissao %></td>
-								<br>
-								<b>Nome Comercial:</b>
-								<td><%=profissao.nome_comercial %></td>
-								<br>
-								<b>WhatsApp:</b>
-								<td><%=profissao.whatsapp %></td>
-								<br>
-								<b>Celular:</b>
-								<td><%=profissao.celular %></td>
-								<br>
-								<b>Endereço:</b>
-								<td><%=profissao.endereco %></td>				    
-							</tr>
-						</p>
-						<br>
-					</p>
-					</tbody>
-				<% end %>
-			</div>
+				<br> 
+				<div class="search-result">		     	
+					<% @busca_profissao.each do |profissao| 
+						%>
+						<h3><a href="/profissoes"><%= "#{busca_profissao.nome_completo}" %></a></h3>
+						<a href="#" class="search-link"><%= "#{busca_profissao.email}" %></a>
+						<tbody class="table table-hover">
+							<p>	
+								<tr>
+									<b>Profissão:</b>
+									<td><%=profissao.profissao %></td>
+									<br>
+									<b>Nome Comercial:</b>
+									<td><%=profissao.nome_comercial %></td>
+									<br>
+									<b>WhatsApp:</b>
+									<td><%=profissao.whatsapp %></td>
+									<br>
+									<b>Celular:</b>
+									<td><%=profissao.celular %></td>
+									<br>
+									<b>Endereço:</b>
+									<td><%=profissao.endereco %></td>				    
+								</tr>
+							</p>
+							<br>
+						</tbody>
+					<% end %>
+				</div>
+			</p>	
 		</div>
 	</div>
 </div>
