@@ -11,8 +11,27 @@ body {
   padding-top: 10px; 
   padding-bottom: 0px ; 
   background: #f1f1f1;
-  height: 100%;
   width: 100%;
+  height: 80px;
+  margin: 0;
+  padding: 0;
+}
+
+.pagina {
+  padding-bottom: 100%;
+}
+
+.ratestar .stars .star {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background: #fff url(../images/sprite.png) -2px -134px no-repeat;
+  margin-right: 3px;
+  cursor: pointer;
+}
+
+.ratestar .stars .star.selected {
+  background: #fff url(../images/sprite.png) -23px -134px no-repeat;
 }
 
 .lsb {

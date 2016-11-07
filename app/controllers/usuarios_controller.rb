@@ -1,6 +1,5 @@
 class UsuariosController < ApplicationController
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_model!
   # GET /usuarios
   # GET /usuarios.json
   def index
@@ -54,7 +53,7 @@ class UsuariosController < ApplicationController
   # DELETE /usuarios/1
   # DELETE /usuarios/1.json
   def destroy
-    @usuario.destroy
+    @usuario.update(ativo: false)
     respond_to do |format|
       format.html { redirect_to usuarios_url }
       format.json { head :no_content }

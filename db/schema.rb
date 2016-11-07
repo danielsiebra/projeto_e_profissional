@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101180140) do
+ActiveRecord::Schema.define(version: 20161107165304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,8 +27,9 @@ ActiveRecord::Schema.define(version: 20161101180140) do
     t.text     "comentario"
     t.string   "papel"
     t.integer  "avaliacao"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "ativo",      default: true
   end
 
   create_table "buscas_profissionais", force: :cascade do |t|
@@ -42,8 +43,9 @@ ActiveRecord::Schema.define(version: 20161101180140) do
     t.string   "nome"
     t.string   "email"
     t.string   "senha"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "ativo",      default: true
   end
 
   create_table "modeis", force: :cascade do |t|
@@ -128,10 +130,12 @@ ActiveRecord::Schema.define(version: 20161101180140) do
     t.string   "nome_cliente"
     t.string   "email_cliente"
     t.text     "descricao_servico"
-    t.date     "de"
-    t.date     "ate"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.string   "de"
+    t.string   "ate"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "servico_id"
+    t.boolean  "ativo",             default: true
   end
 
   add_index "registros_servicos_realizados", ["profissional_id"], name: "index_registros_servicos_realizados_on_profissional_id", using: :btree
@@ -142,8 +146,10 @@ ActiveRecord::Schema.define(version: 20161101180140) do
     t.string   "nome"
     t.integer  "profissional_id"
     t.integer  "registros_servicos_realizado_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.boolean  "ativo",                           default: true
+    t.text     "descricao"
   end
 
   add_index "servicos", ["profissional_id"], name: "index_servicos_on_profissional_id", using: :btree
@@ -154,8 +160,9 @@ ActiveRecord::Schema.define(version: 20161101180140) do
     t.string   "email"
     t.string   "papel"
     t.integer  "usuario_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "ativo",        default: true
   end
 
   add_index "solicitacoes_avaliacoes_servicos", ["usuario_id"], name: "index_solicitacoes_avaliacoes_servicos_on_usuario_id", using: :btree
@@ -182,8 +189,9 @@ ActiveRecord::Schema.define(version: 20161101180140) do
     t.string   "email"
     t.string   "nome"
     t.string   "senha"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "ativo",      default: true
   end
 
   add_foreign_key "profissionais", "areas_profissionais"

@@ -1,6 +1,5 @@
 class SolicitacoesAvaliacoesServicosController < ApplicationController
   before_action :set_solicitacoes_avaliacoes_servico, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_model!
   # GET /solicitacoes_avaliacoes_servicos
   # GET /solicitacoes_avaliacoes_servicos.json
   def index
@@ -54,7 +53,7 @@ class SolicitacoesAvaliacoesServicosController < ApplicationController
   # DELETE /solicitacoes_avaliacoes_servicos/1
   # DELETE /solicitacoes_avaliacoes_servicos/1.json
   def destroy
-    @solicitacoes_avaliacoes_servico.destroy
+    @solicitacoes_avaliacoes_servico.update(ativo: false)
     respond_to do |format|
       format.html { redirect_to solicitacoes_avaliacoes_servicos_url }
       format.json { head :no_content }

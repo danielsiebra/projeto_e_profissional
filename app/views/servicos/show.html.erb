@@ -17,13 +17,8 @@
 
 <p>
   <strong>Profissional:</strong>
-  <%= @servico.profissional %>
+  <%= Profissional.find(@servico.profissional_id).nome_completo if !@servico.profissional_id.nil? %>
 </p>
 
-<p>
-  <strong>Registros servicos realizado:</strong>
-  <%= @servico.registros_servicos_realizado %>
-</p>
-
-<%= link_to 'Edit', edit_servico_path(@servico) %> |
-<%= link_to 'Back', servicos_path %>
+<%= link_to 'Editar', edit_servico_path(@servico), :class => 'btn btn-primary' %>
+<%= link_to 'Voltar', servicos_path, :class => 'btn btn-primary' %>

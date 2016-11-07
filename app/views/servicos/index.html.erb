@@ -1,35 +1,35 @@
-<p id="notice"><%= notice %></p>
+<div class="row" style="padding-top: 50px; padding-bottom: 0px ;">
+  <div class="content-box animated fadeInRight">
+    <div class="container">
+      <div class="row">
 
-<h1>Listing Servicos</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Preco</th>
-      <th>Prazo</th>
-      <th>Nome</th>
-      <th>Profissional</th>
-      <th>Registros servicos realizado</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @servicos.each do |servico| %>
-      <tr>
-        <td><%= servico.preco %></td>
-        <td><%= servico.prazo %></td>
-        <td><%= servico.nome %></td>
-        <td><%= servico.profissional %></td>
-        <td><%= servico.registros_servicos_realizado %></td>
-        <td><%= link_to 'Show', servico %></td>
-        <td><%= link_to 'Edit', edit_servico_path(servico) %></td>
-        <td><%= link_to 'Destroy', servico, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Servico', new_servico_path %>
+        <% @servicos.each do |servico| %>
+        <%#= Profissional.find(servico.profissional_id).nome_completo if !servico.profissional_id.nil? %>
+        <%#= RegistrosServicosRealizado.find(servico.registros_servicos_realizado_id).nome_cliente if !servico.registros_servicos_realizado_id.nil? %>
+          <div class="col-md-3">
+            <div class="ibox">
+              <div class="ibox-content product-box">
+                <div class="product-imitation">
+                  Imagem Aqui.
+                </div>
+                <div class="product-desc">
+                  <span class="product-price">
+                    R$<%= servico.preco %>
+                  </span>
+                  <small class="text-muted">Prazo - <%= servico.prazo %> dias</small>
+                  <a href="#" class="product-name"><%= servico.nome %></a>
+                  <div class="small m-t-xs">
+                    <%= servico.descricao %>
+                  </div>
+                  <div class="m-t text-righ">
+                    <%= link_to '', servico, :class => 'btn btn-primary glyphicon glyphicon-search btn-outline', :title => 'Visualizar' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

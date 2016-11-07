@@ -10,20 +10,29 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :preco %><br>
-    <%= f.text_field :preco %>
+  <div class="field form-group">
+      Profissional
+      <%= f.select(:profissional_id, Profissional.where(:ativo => true).collect {|e| [e.nome_completo, e.id]}, { prompt: "Selecione o Profissional"}, :class => 'form-control', :required => true)%>
   </div>
-  <div class="field">
-    <%= f.label :prazo %><br>
-    <%= f.text_field :prazo %>
+  <div class="field form-group">
+    Preço
+    <%= f.text_field :preco, :class => 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :nome %><br>
-    <%= f.text_field :nome %>
+  <div class="field form-group">
+    Prazo
+    <%= f.text_field :prazo, :class => 'form-control' %>
+  </div>
+  <div class="field form-group">
+    Nome
+    <%= f.text_field :nome, :class => 'form-control' %>
+  </div>
+  <div class="field form-group">
+    Descrição
+    <%= f.text_field :descricao, :class => 'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= button_tag(type: 'submit', class: "btn btn-primary", title: 'Salvar') do %>
+    <i class="fa fa-save"></i>
+    <% end %>
   </div>
 <% end %>

@@ -1,39 +1,56 @@
-<p id="notice"><%= notice %></p>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h1>Visualizando Registros dos Serviços Realizados</h1>
+        </div>
+        <div class="ibox-content">
+          <p id="notice">
+            <center class="alert-info">
+              <%= notice %> 
+            </center>
+          </p>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <p>
+                <strong>Titulo serviço:</strong>
+                <%= Servico.find(@registros_servicos_realizado.servico_id).nome if !@registros_servicos_realizado.servico_id.nil? %>
+              </p>
 
-<p>
-  <strong>Profissional:</strong>
-  <%= @registros_servicos_realizado.profissional %>
-</p>
+              <p>
+                <strong>Nome cliente:</strong>
+                <%= @registros_servicos_realizado.nome_cliente %>
+              </p>
 
-<p>
-  <strong>Titulo servico:</strong>
-  <%= @registros_servicos_realizado.titulo_servico %>
-</p>
+              <p>
+                <strong>E-mail cliente:</strong>
+                <%= @registros_servicos_realizado.email_cliente %>
+              </p>
 
-<p>
-  <strong>Nome cliente:</strong>
-  <%= @registros_servicos_realizado.nome_cliente %>
-</p>
+              <p>
+                <strong>Descriçao serviço:</strong>
+                <%= @registros_servicos_realizado.descricao_servico %>
+              </p>
 
-<p>
-  <strong>Email cliente:</strong>
-  <%= @registros_servicos_realizado.email_cliente %>
-</p>
+              <p>
+                <strong>De:</strong>
+                <%= @registros_servicos_realizado.de %>
+              </p>
 
-<p>
-  <strong>Descricao servico:</strong>
-  <%= @registros_servicos_realizado.descricao_servico %>
-</p>
-
-<p>
-  <strong>De:</strong>
-  <%= @registros_servicos_realizado.de %>
-</p>
-
-<p>
-  <strong>Ate:</strong>
-  <%= @registros_servicos_realizado.ate %>
-</p>
-
-<%= link_to 'Edit', edit_registros_servicos_realizado_path(@registros_servicos_realizado) %> |
-<%= link_to 'Back', registros_servicos_realizados_path %>
+              <p>
+                <strong>Ate:</strong>
+                <%= @registros_servicos_realizado.ate %>
+              </p>
+            </div>
+          </div>
+          <div>
+            <%= link_to '', new_registros_servicos_realizado_path, :class => 'btn btn-primary fa fa-plus', :title => 'Novo Registro' %>
+            <%= link_to '', edit_registros_servicos_realizado_path(@registros_servicos_realizado), :class => 'btn btn-warning fa fa-edit', :title => 'Editar' %>
+            <%= link_to '', registros_servicos_realizados_path, :class => 'btn btn-danger fa fa-reply', :title => 'Voltar' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

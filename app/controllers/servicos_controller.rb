@@ -1,6 +1,5 @@
 class ServicosController < ApplicationController
   before_action :set_servico, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_model!
   # GET /servicos
   # GET /servicos.json
   def index
@@ -54,7 +53,7 @@ class ServicosController < ApplicationController
   # DELETE /servicos/1
   # DELETE /servicos/1.json
   def destroy
-    @servico.destroy
+    @servico.update(ativo: false)
     respond_to do |format|
       format.html { redirect_to servicos_url }
       format.json { head :no_content }
@@ -69,6 +68,6 @@ class ServicosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def servico_params
-      params.require(:servico).permit(:preco, :prazo, :nome, :profissional_id, :registros_servicos_realizado_id)
+      params.require(:servico).permit(:preco, :prazo, :nome, :profissional_id, :registros_servicos_realizado_id, :descricao)
     end
 end

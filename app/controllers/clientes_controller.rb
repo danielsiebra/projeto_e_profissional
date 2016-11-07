@@ -1,6 +1,5 @@
 class ClientesController < ApplicationController
   before_action :set_cliente, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_model!
   # GET /clientes
   # GET /clientes.json
   def index
@@ -54,7 +53,7 @@ class ClientesController < ApplicationController
   # DELETE /clientes/1
   # DELETE /clientes/1.json
   def destroy
-    @cliente.destroy
+    @cliente.update(ativo: false)
     respond_to do |format|
       format.html { redirect_to clientes_url }
       format.json { head :no_content }

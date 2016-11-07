@@ -35,7 +35,6 @@ end
 gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
 gem 'ransack'
 
-gem 'maskedinput-rails'
 gem 'jquery-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
@@ -49,3 +48,4 @@ gem 'jquery-rails'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'devise'
+gem 'maskedinput-rails'

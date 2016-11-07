@@ -1,6 +1,5 @@
 class RegistrosServicosRealizadosController < ApplicationController
   before_action :set_registros_servicos_realizado, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_model!
   # GET /registros_servicos_realizados
   # GET /registros_servicos_realizados.json
   def index
@@ -54,7 +53,7 @@ class RegistrosServicosRealizadosController < ApplicationController
   # DELETE /registros_servicos_realizados/1
   # DELETE /registros_servicos_realizados/1.json
   def destroy
-    @registros_servicos_realizado.destroy
+    @registros_servicos_realizado.update(ativo: false)
     respond_to do |format|
       format.html { redirect_to registros_servicos_realizados_url }
       format.json { head :no_content }
@@ -69,6 +68,6 @@ class RegistrosServicosRealizadosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registros_servicos_realizado_params
-      params.require(:registros_servicos_realizado).permit(:profissional_id, :titulo_servico, :nome_cliente, :email_cliente, :descricao_servico, :de, :ate)
+      params.require(:registros_servicos_realizado).permit(:profissional_id, :titulo_servico, :nome_cliente, :email_cliente, :descricao_servico, :de, :ate, :servico_id)
     end
 end

@@ -29,3 +29,39 @@
 <br>
 
 <%= link_to 'New Avaliacoes servico', new_avaliacoes_servico_path %>
+
+<div class="row" style="padding-top: 50px; padding-bottom: 0px ;">
+  <div class="content-box animated fadeInRight">
+    <div class="container">
+      <div class="row">
+
+        <% @servicos.each do |servico| %>
+        <%#= Profissional.find(servico.profissional_id).nome_completo if !servico.profissional_id.nil? %>
+        <%#= RegistrosServicosRealizado.find(servico.registros_servicos_realizado_id).nome_cliente if !servico.registros_servicos_realizado_id.nil? %>
+          <div class="col-md-3">
+            <div class="ibox">
+              <div class="ibox-content product-box">
+                <div class="product-imitation">
+                  Imagem Aqui.
+                </div>
+                <div class="product-desc">
+                  <span class="product-price">
+                    R$<%= servico.preco %>
+                  </span>
+                  <small class="text-muted">Prazo - <%= servico.prazo %> dias</small>
+                  <a href="#" class="product-name"><%= servico.nome %></a>
+                  <div class="small m-t-xs">
+                    <%= servico.descricao %>
+                  </div>
+                  <div class="m-t text-righ">
+                    <%= link_to '', servico, :class => 'btn btn-primary glyphicon glyphicon-search btn-outline', :title => 'Visualizar' %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

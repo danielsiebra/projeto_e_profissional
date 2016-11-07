@@ -1,6 +1,5 @@
 class ProfissionaisController < ApplicationController
   before_action :set_profissional, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_model!
   # GET /profissionais
   # GET /profissionais.json
   def index
@@ -54,7 +53,7 @@ class ProfissionaisController < ApplicationController
   # DELETE /profissionais/1
   # DELETE /profissionais/1.json
   def destroy
-    @profissional.destroy
+    @profissional.update(ativo: false)
     respond_to do |format|
       format.html { redirect_to profissionais_url, notice: 'Profissional deletado com sucesso!' }
       format.json { head :no_content }

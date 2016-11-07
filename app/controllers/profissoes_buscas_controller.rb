@@ -1,6 +1,5 @@
 class ProfissoesBuscasController < ApplicationController
   before_action :set_profissoes_busca, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_model!
   # GET /profissoes_buscas
   # GET /profissoes_buscas.json
   def index
@@ -54,7 +53,7 @@ class ProfissoesBuscasController < ApplicationController
   # DELETE /profissoes_buscas/1
   # DELETE /profissoes_buscas/1.json
   def destroy
-    @profissoes_busca.destroy
+    @profissoes_busca.update(ativo: false)
     respond_to do |format|
       format.html { redirect_to profissoes_buscas_url }
       format.json { head :no_content }

@@ -1,6 +1,5 @@
 class ProfissoesController < ApplicationController
   before_action :set_profissao, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_model!
   # GET /profissoes
   # GET /profissoes.json
   def index
