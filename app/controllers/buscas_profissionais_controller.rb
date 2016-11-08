@@ -33,8 +33,6 @@ class BuscasProfissionaisController < ApplicationController
     #@busca = ProfissoesProfissional.find_by_sql("SELECT pes.profissao, pais.id, pais.nome_completo, pais.nome_comercial, pais.whatsapp, pais.celular, pais.email, pais.endereco FROM projeto_e_profissional.profissoes_profissionais as pp INNER JOIN projeto_e_profissional.profissoes as pes ON pes.id = pp.profissao_id INNER JOIN projeto_e_profissional.profissionais as pais ON pais.id = pp.profissional_id WHERE pes.ativo = true AND pes.profissao ILIKE '%#{@buscar_profissionais}%' OR pais.nome_completo ILIKE '%#{@buscar_profissionais}%'")
     # @busca = ProfissoesProfissional.select("pes.profissao, pais.nome_completo, pais.nome_comercial, pais.whatsapp, pais.celular, pais.email, pais.endereco as pp joins projeto_e_profissional.profissoes as pes ON pes.id = pp.profissao_id joins projeto_e_profissional.profissionais as pais ON pais.id = pp.profissional_id where profissoes.ativo = ? AND profissoes.profissao ILIKE ?", true, "%#{@buscar_profissionais}%") 
     @busca = ProfissoesProfissional.find_by_sql("SELECT pes.profissao, pais.id, pais.nome_completo, pais.nome_comercial, pais.whatsapp, pais.celular, pais.email, pais.endereco FROM projeto_e_profissional.profissoes_profissionais as pp INNER JOIN projeto_e_profissional.profissoes as pes ON pes.id = pp.profissao_id INNER JOIN projeto_e_profissional.profissionais as pais ON pais.id = pp.profissional_id WHERE pes.ativo = true AND pes.profissao ILIKE '%#{@buscar_profissoes}%' AND pais.nome_completo ILIKE '%#{@buscar_profissionais}%' OR pais.nome_comercial ILIKE '%#{@buscar_profissionais}%' OR pais.celular ILIKE '%#{@buscar_profissionais}%'")
-    
-    
     @email = Array.new
     @celular = Array.new
     @whatsapp = Array.new

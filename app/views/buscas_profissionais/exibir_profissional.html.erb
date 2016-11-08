@@ -6,7 +6,8 @@
 				<small>
 					</br>
 					Aproximadamente 
-					<b><%= 
+					<b>
+						<%= 
 						if !@nome_completo.blank?
 							@nome_completo.count
 						else 
@@ -17,15 +18,20 @@
 				</small>
 				<br>
 			<div class="search-result">		            	
-				<% @busca.each do |buscar| 
-					%>
-					<h3><a href="/profissoes_profissionais/<%="#{buscar.id}"%>"><%= "#{buscar.nome_completo}" %></a></h3>
-					<a href="#" class="search-link"><%= "#{buscar.email}" %></a>
+				<% @busca.each do |buscar| %>
+					<h3>
+						<a href="/profissoes_profissionais/<%="#{buscar.id}"%>">
+							<%= "#{buscar.nome_completo}" %>
+						</a>
+					</h3>
+					<a href="#" class="search-link">
+						<%= "#{buscar.email}" %>
+					</a>
 					<tbody class="table table-hover">
 						<p>	
 							<tr>
 								<b>Profissão:</b>
-								<td><%=buscar.profissao %></td>
+								<td><%= buscar.profissao %></td>
 								<br>
 								<b>Nome Comercial:</b>
 								<td><%=buscar.nome_comercial %></td>
@@ -41,7 +47,6 @@
 							</tr>
 						</p>
 						<br>
-					</p>
 					</tbody>
 				<% end %>
 			</div>

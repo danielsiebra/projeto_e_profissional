@@ -68,6 +68,6 @@ class AvaliacoesServicosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def avaliacoes_servico_params
-      params.require(:avaliacoes_servico).permit(:comentario, :papel, :avaliacao)
+      params.require(:avaliacoes_servico).permit(:comentario, :papel, :avaliacao, :servico_id, :profissional_id)
     end
 end

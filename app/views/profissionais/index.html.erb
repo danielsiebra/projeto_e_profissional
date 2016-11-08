@@ -1,54 +1,51 @@
-<div class="wrapper wrapper-content animated fadeInRight">
-  <div class="row">
-    <div class="col">
-      <div class="ibox float-e-margins">
-        <div class="ibox-title">
-          <div class="row">
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 ">
-              <h4><%= link_to '', new_profissional_path, :class => 'btn btn-primary fa fa-plus', :title => 'Novo Profissional' %></h4>
-            </div>
-            <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 ">
-              <div style="text-align:center">
-                <h2>Profissionais <span class="btn btn-info m-r-sm"><%= @profissionais.count %></span></h2>
+<div class="row" style="padding-top: 50px; padding-bottom: 0px ;">
+  <div class="content-box animated fadeInRight">
+    <div class="container">
+      <div class="row">
+        <% @profissionais.each do |profissional| %>
+          <div class="col-md-3">
+            <div class="ibox">
+              <div class="contact-box center-version">
+                <a href="profile.html">
+                  <img alt="image" class="img-circle" src="<%= image_path('a2.jpg') %>">
+                  <h3 class="m-b-xs">
+                    <strong><%= profissional.nome_completo %></strong>
+                  </h3>
+                  <div class="font-bold">
+                    Programador
+                  </div>
+                  <address class="m-t-md">
+                    <strong><%= profissional.nome_comercial %></strong>
+                    <br>
+                    Rua:
+                    <%= profissional.rua %>
+                    <br>
+                    Estado:
+                    <%= profissional.estado %>, <%= profissional.cep %>
+                    <br>
+                    <abbr title="Phone">
+                      Celular:
+                    </abbr> <%= profissional.celular %>
+                    <br>
+                    <abbr title="Phone">
+                      Whatsapp:
+                    </abbr> <%= profissional.whatsapp %>
+                  </address>
+                </a>
+                <div class="m-t text-righ">
+                  <%= link_to '', @profissional, :class => 'btn btn-sm btn-default fa fa-search', :title => 'Visualizar' %> 
+                </div>
+                <div class="contact-box-footer">
+                  <div class="m-t-xs btn-group">
+                    <a class="btn btn-xs btn-white"><i class="fa fa-phone"></i> Call </a>
+                    <a class="btn btn-xs btn-white"><i class="fa fa-envelope"></i> Email</a>
+                    <a class="btn btn-xs btn-white"><i class="fa fa-user-plus"></i> Follow</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="ibox-content">
-          <p id="notice">
-            <center class="alert-info">
-              <%= notice %> 
-            </center>
-          </p>
-          <table class="table table-hover">
-            <thead class="table table-bordered">
-              <tr>
-                <th>Nome completo</th>
-                <th>Nome comercial</th>
-                <th>Whatsapp</th>
-                <th>Celular</th>
-                <th>E-mail</th>
-                <th>Endereço</th>
-                <th colspan="3"></th>
-              </tr>
-            </thead>
-            <tbody class="table table-hover">
-              <% @profissionais.each do |profissional| %>
-                <tr>
-                  <td><%= profissional.nome_completo %></td>
-                  <td><%= profissional.nome_comercial %></td>
-                  <td><%= profissional.whatsapp %></td>
-                  <td><%= profissional.celular %></td>
-                  <td><%= profissional.email %></td>
-                  <td><%= profissional.endereco %></td>
-                <td><%= link_to '', profissional, :class => 'btn btn-primary fa fa-search', :title => 'Visualizar' %></td>
-                <td><%= link_to '', edit_profissional_path(profissional), :class => 'btn btn-warning fa fa-edit', :title => 'Editar' %></td>
-                <td><%= link_to '', profissional, :method=>:delete, data: { confirm: 'Você tem certeza?' }, :class => 'btn btn-danger fa fa-trash',:title => 'Apagar' %></td>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

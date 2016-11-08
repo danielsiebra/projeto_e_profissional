@@ -4,6 +4,8 @@ class ProfissionaisController < ApplicationController
   # GET /profissionais.json
   def index
     @profissionais = Profissional.where(:ativo => true)
+
+
   end
 
   # GET /profissionais/1
@@ -68,6 +70,6 @@ class ProfissionaisController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profissional_params
-      params.require(:profissional).permit(:areas_profissional_id, :profissoes_profissional_id, :nome_completo, :nome_comercial, :whatsapp, :celular, :email, :endereco, :ativo)
+      params.require(:profissional).permit(:areas_profissional_id, :profissoes_profissional_id, :nome_completo, :nome_comercial, :whatsapp, :celular, :email, :rua, :cep, :estado, :bairro, :cidade, :ativo)
     end
 end

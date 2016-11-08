@@ -5,4 +5,6 @@ class Profissional < ActiveRecord::Base
 			  length: { minimum: 3 }
   validates :nome_completo,
 	 		  uniqueness: true
+  has_many :servico
+  has_many :avaliacoes_servico
 end

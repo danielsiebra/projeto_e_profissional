@@ -9,6 +9,7 @@ class ProfissoesProfissionaisController < ApplicationController
   # GET /profissoes_profissionais/1
   # GET /profissoes_profissionais/1.json
   def show
+    @servicos = Servico.where('profissional_id = ?', params[:id])
   end
 
   # GET /profissoes_profissionais/new

@@ -10,20 +10,29 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :comentario %><br>
-    <%= f.text_area :comentario %>
-  </div>
-  <div class="field">
-    <%= f.label :papel %><br>
-    <%= f.text_field :papel %>
-  </div>
-  <div class="field">
-    <%= f.label :avaliacao %><br>
-    <%= f.number_field :avaliacao %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="container">
+    <div class="field form-group">
+      Profissional
+      <%= f.select(:profissional_id, Profissional.where(:ativo => true).collect {|e| [e.nome_completo, e.id]}, { prompt: "Selecione o Profissional"}, :class => 'form-control', :required => true)%>
+    </div>
+    <div class="field form-group">
+      Serviço
+      <%= f.select(:servico_id, Servico.where(:ativo => true).collect {|e| [e.nome, e.id]}, { prompt: "Selecione o Serviço"}, :class => 'form-control', :required => true)%>
+    </div>
+    <div class="field form-group">
+      Comentario
+      <%= f.text_area :comentario, :class => 'form-control' %>
+    </div>
+    <div class="field form-group">
+      Papel
+      <%= f.text_field :papel, :class => 'form-control' %>
+    </div>
+    <div class="field form-group">
+      Avaliaçao
+      <%= f.number_field :avaliacao, :class => 'form-control' %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
   </div>
 <% end %>

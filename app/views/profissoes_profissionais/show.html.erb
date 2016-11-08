@@ -6,6 +6,20 @@
 					<h1><%= Profissional.find(@profissoes_profissional.profissional_id).nome_completo if !@profissoes_profissional.profissional_id.nil? %></h1>
 					<h3><%= Profissao.find(@profissoes_profissional.profissao_id).profissao if !@profissoes_profissional.profissao_id.nil? %></h3>
 					N° de serviços realizados.
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Serviço</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @servicos.each do |servico| %>
+								<tr>
+									<td><%= servico.nome %></td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
 				</div>
 				<div class="ibox-content">
 					<p id="notice">
@@ -13,11 +27,6 @@
 							<%= notice %> 
 						</center>
 					</p>
-					<div>
-						<%= link_to '', new_profissoes_profissional_path, :class => 'btn btn-primary fa fa-plus', :title => 'Nova Profissão do Profissional' %>
-						<%= link_to '', edit_profissoes_profissional_path(@profissoes_profissional), :class => 'btn btn-warning fa fa-edit', :title => 'Editar' %>
-						<%= link_to '', profissoes_profissionais_path, :class => 'btn btn-sm btn-danger fa fa-reply', :title => 'Voltar/Cancelar' %>
-					</div>
 				</div>
 			</div>
 		</div>
