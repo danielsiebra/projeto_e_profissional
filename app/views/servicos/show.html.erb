@@ -17,7 +17,7 @@
 
 <p>
   <strong>Profissional:</strong>
-  <%= Profissional.find(@servico.profissional_id).nome_completo if !@servico.profissional_id.nil? %>
+  <%= Profissional.find(@servico.profissoes_profissionais_id).nome_completo %>
 </p>
 
 <%= link_to 'Editar', edit_servico_path(@servico), :class => 'btn btn-primary' %>

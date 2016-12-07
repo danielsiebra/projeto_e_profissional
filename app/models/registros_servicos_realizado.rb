@@ -1,5 +1,6 @@
 class RegistrosServicosRealizado < ActiveRecord::Base
   belongs_to :profissional
-  has_many :servico
+  belongs_to :servico
   belongs_to :cliente
+  belongs_to :profissoes_profissional
 end

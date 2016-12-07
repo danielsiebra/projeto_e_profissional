@@ -5,9 +5,12 @@
 // or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
 //
 //
+//= require vue
 //= require jquery
 //= require jquery_ujs
 //= require jquery/jquery-2.1.1.js
+//= require jquery-ui
+//= require autocomplete-rails
 //= require bootstrap-sprockets
 //= require metisMenu/jquery.metisMenu.js
 //= require pace/pace.min.js
@@ -15,3 +18,4 @@
 //= require slimscroll/jquery.slimscroll.min.js
 //= require inspinia.js
 //= require maskedinput
+//= require maskmoney

@@ -4,13 +4,13 @@ class ProfissionaisController < ApplicationController
   # GET /profissionais.json
   def index
     @profissionais = Profissional.where(:ativo => true)
-
-
+    
   end
 
   # GET /profissionais/1
   # GET /profissionais/1.json
   def show
+    @perfil = Profissional.select(:id, :nome_comercial, :nome_completo).joins(:profissoes_profissionais, :areas_profissionais, :servicos).select(:profissao_id)
   end
 
   # GET /profissionais/new

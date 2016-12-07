@@ -3,13 +3,15 @@ class ProfissoesProfissionaisController < ApplicationController
   # GET /profissoes_profissionais
   # GET /profissoes_profissionais.json
   def index
-    @profissoes_profissionais = ProfissoesProfissional.where(:ativo => true)
+    #@profissoes_profissionais = ProfissoesProfissional.joins(:profissionais, :profissoes).select(:nome_profissao, :nome_completo, :nome_comercial, :whatsapp, :celular, :email, :rua, :estado, :cep)
+    @profissoes_profissionais = ProfissoesProfissional.where("ativo=?", true)
   end
 
   # GET /profissoes_profissionais/1
   # GET /profissoes_profissionais/1.json
   def show
-    @servicos = Servico.where('profissional_id = ?', params[:id])
+    #@servicos = Servico.where('profissional_id = ?', params[:id])
+    #@servicos_realizados = RegistrosServicosRealizado.select(:id, :servico_id, )
   end
 
   # GET /profissoes_profissionais/new

@@ -4,21 +4,40 @@ body {
   font-size: 13px;
   color: $text-color;
   overflow-x: hidden;
+  margin: 0;
+  margin-bottom: 1000px;
 
 }
+
+#hearts { color: #ee8b2d;}
+#hearts-existing { color: #ee8b2d;}
 
 .estilo {
   padding-top: 10px; 
   padding-bottom: 0px ; 
-  background: #f1f1f1;
+  background: #FAFAFA;
   width: 100%;
   height: 80px;
   margin: 0;
   padding: 0;
 }
 
+.estrelas input[type=radio] {
+  display: none;
+}
+
+.estrelas label i.fa:before {
+  content:'\f005';
+  color: #FC0;
+}
+
+.estrelas input[type=radio]:checked ~ label i.fa:before {
+  color: #CCC;
+}
+
 .pagina {
   padding-bottom: 100%;
+    margin-bottom: 1000px;
 }
 
 .ratestar .stars .star {
@@ -59,6 +78,8 @@ body {
 html, body {
   height: 100%;
   background-color: #FAFAFA;
+  margin: 0;
+  margin-bottom: 100px;
 
 }
 #viewport {
@@ -70,10 +91,12 @@ html, body {
 body.full-height-layout #wrapper,
 body.full-height-layout #page-wrapper {
   height: 100%;
+  margin-bottom: 100px;
 }
 
 #page-wrapper {
   min-height: auto;
+  margin-bottom: 100px;
 }
 
 body.boxed-layout {
@@ -226,10 +249,12 @@ video {
 #wrapper {
   width: 100%;
   overflow-x: hidden;
+  margin-bottom: 100px;
 }
 
 .wrapper {
   padding: 0 20px;
+  margin-bottom: 100px;
 }
 
 .wrapper-content {

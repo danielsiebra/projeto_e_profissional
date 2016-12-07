@@ -1,0 +1,50 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <center>
+            <h1>
+	            Registro dos e-mails
+	            <span class="badge badge-info">
+	                <%= @registra_email.count %>    
+		          </span>
+	        	</h1>
+	      	</center>
+	    	</div>
+		    <div class="ibox-content">
+		      <p id="notice">
+		        <center class="alert-info">
+		          <%= notice %>
+		        </center>
+		      </p>
+
+		      <table class="table table-hover">
+		        <thead class="table table-bordered">
+              <tr>
+                <th>remetente:</th>
+                <th>destinatário:</th>
+                <th>mensagem:</th>
+                <th>data:</th>
+                <th colspan="2"></th>
+              </tr>
+            </thead> 
+
+            <tbody class="table-hover">
+              <% @registra_email.each do |registra_email| %>
+                <tr>
+                  <td><%=  registra_email.remetente %></td>
+                  <td><%=  registra_email.email %></td>
+                  <td><%=  registra_email.comentario %></td>
+                  <td><%=  registra_email.created_at.strftime("%d/%m/%Y %H:%M") if !registra_email.created_at.nil? %></td>
+								 </tr>
+            	<% end %>
+        		</tbody>
+					</table> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>s
+					 <!-- link_to '', new_registra_email_path, :class => 'btn btn-primary fa fa-plus', :title => 'Enviar e-mail'
+        </div> -->

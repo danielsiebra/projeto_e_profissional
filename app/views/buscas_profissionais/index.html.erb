@@ -6,6 +6,8 @@
 				</br></br></br></br></br></br>
 				<center>
 					<%= image_tag("logo.png") %>
+					<br>
+					<b>Seja bem-vindo ao Profissionais Já!</b>
 				</center>
 				<br>
 				<%= form_tag :controller => "buscas_profissionais", :action => "buscar_profissional", :method => "post" do %>
@@ -16,7 +18,6 @@
 					<center>
 						<%= button_tag(type: 'submit', class: "btn btn-default", title: 'Pesquisar', style: "background:#F2F2F2;") do %>
 							Buscar
-
 						<% end %>
 					</center>
 				<% end %>

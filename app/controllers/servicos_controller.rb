@@ -3,7 +3,7 @@ class ServicosController < ApplicationController
   # GET /servicos
   # GET /servicos.json
   def index
-    @servicos = Servico.all
+    @servicos = Servico.order(:nome).where("ativo=?", true)
   end
 
   # GET /servicos/1
@@ -68,6 +68,6 @@ class ServicosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def servico_params
-      params.require(:servico).permit(:preco, :prazo, :nome, :profissional_id, :registros_servicos_realizado_id, :descricao)
+      params.require(:servico).permit(:preco, :prazo, :nome, :profissional_id, :registros_servicos_realizado_id, :descricao, :profissoes_profissionais_id)
     end
 end

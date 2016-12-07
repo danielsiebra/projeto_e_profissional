@@ -1,3 +1,28 @@
+<script src = "http://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    var campos_max          = 10;   //max de 10 campos
+    var x = 1; // campos iniciais
+    $('#add_field').click (function(e) {
+      e.preventDefault();     //prevenir novos clicks
+      if (x < campos_max) {
+        $('#listas').append('<div>\
+          <input type="text" name="campo[]" class = "form-control">\
+          <a class="remover_campo btn btn-danger fa fa-trash-o" href="path/to/settings" aria-label="Delete"\
+          </div>');
+        x++;
+      }
+    });
+    // Remover o div anterior
+    $('#listas').on("click",".remover_campo",function(e) {
+      e.preventDefault();
+      $(this).parent('div').remove();
+      x--;
+    });
+  });
+</script>
+
+
 <%= form_for(@profissoes_profissional) do |f| %>
   <% if @profissoes_profissional.errors.any? %>
     <div id="error_explanation">
@@ -11,9 +36,9 @@
     </div>
   <% end %>
   <form class="form-horizontal">
-    <div class="field form-group">
+    <div id="listas" class="field form-group">
       Profissão
-      <%= f.select(:profissao_id, Profissao.where(:ativo => true).collect {|e| [e.profissao, e.id]}, { prompt: "Selecione a Profissão"}, :class => 'form-control', :required => true)%>
+      <%= f.select(:profissao_id, Profissao.where(:ativo => true).collect {|e| [e.nome_profissao, e.id]}, { prompt: "Selecione a Profissão"}, :class => 'form-control', :required => true)%>
     </div>
     <div class="field form-group">
       Profissional

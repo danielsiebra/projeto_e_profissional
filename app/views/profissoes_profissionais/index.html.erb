@@ -1,51 +1,56 @@
-<div class="wrapper wrapper-content animated fadeInRight">
-  <div class="row">
-    <div class="col">
-      <div class="ibox float-e-margins">
-        <div class="ibox-title">
-          <div class="row">
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 ">
-              <h4><%= link_to '', new_profissoes_profissional_path, :class => 'btn btn-primary fa fa-plus', :title => 'Nova crença' %></h4>
-            </div>
-            <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 ">
-              <div style="text-align:center">
-                <h2>Profissões dos Profissionais <span class="badge badge-info"><%= @profissoes_profissionais.count %></span></h2>
+<div class="row" style="padding-top: 50px; padding-bottom: 0px ;">
+  <div class="content-box animated fadeInRight">
+    <div class="container">
+      <div class="row">
+        <div style="text-align:center">
+          <h2>Profissionais <span class="badge badge-info"></span></h2>
+        </div>
+        <% if !@profissoes_profissionais.nil? %>
+           <% @profissoes_profissionais.each do |profissoes_profissional| %>
+            <div class="col-md-3">
+              <div class="ibox">
+                <div class="contact-box center-version">
+                  <a href="profile.html">
+                    <img alt="image" class="img-circle" src="<%= image_path('a2.jpg') %>">
+                    <h3 class="m-b-xs">
+                      <strong><%= profissoes_profissional.profissional.nome_completo %></strong>
+                    </h3>
+                    <div class="font-bold">
+                      Programador
+                    </div>
+                    <address class="m-t-md">
+                      <strong><%= profissoes_profissional.profissional.nome_comercial %></strong>
+                      <br>
+                      Rua:
+                      <%= profissoes_profissional.profissional.rua %>
+                      <br>
+                      Estado:
+                      <%= profissoes_profissional.profissional.estado %>, <%= profissoes_profissional.profissional.cep %>
+                      <br>
+                      <abbr title="Phone">
+                        Celular:
+                      </abbr> <%= profissoes_profissional.profissional.celular %>
+                      <br>
+                      <abbr title="Phone">
+                        Whatsapp:
+                      </abbr> <%= profissoes_profissional.profissional.whatsapp %>
+                    </address>
+                  </a>
+                  <div class="contact-box-footer">
+                    <%= link_to '', profissoes_profissional_path(profissoes_profissional), :class => 'btn btn-sm btn-default fa fa-search', :title => 'Visualizar' %> 
+                  </div>
+                  <div class="contact-box-footer">
+                    <div class="m-t-xs btn-group">
+                      <a class="btn btn-xs btn-white"><i class="fa fa-phone"></i> Call </a>
+                      <a class="btn btn-xs btn-white"><i class="fa fa-envelope"></i> Email</a>
+                      <a class="btn btn-xs btn-white"><i class="fa fa-user-plus"></i> Follow</a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="ibox-content">
-          <p id="notice">
-            <center class="alert-info">
-              <%= notice %> 
-            </center>
-          </p>
-          <table class="table table-hover">
-            <thead class="table table-bordered">
-              <tr>
-                <th>Profissional</th>
-                <th>Profissão</th>
-                <th colspan="3"></th>
-              </tr>
-            </thead>
-            <tbody class="table table-hover">
-              <% @profissoes_profissionais.each do |profissoes_profissional| %>
-                <tr>
-                  <td><%= Profissional.find(profissoes_profissional.profissional_id).nome_completo %></td>
-
-
-                  <td><%= Profissao.find(profissoes_profissional.profissao_id).profissao if !profissoes_profissional.profissao_id.nil? %></td>
-
-
-
-                  <td><%= link_to '', profissoes_profissional, :class => 'btn btn-primary fa fa-search', :title => 'Visualizar' %></td>
-                  <td><%= link_to '', edit_profissoes_profissional_path(profissoes_profissional), :class => 'btn btn-warning fa fa-edit', :title => 'Editar' %></td>
-                  <td><%= link_to '', profissoes_profissional, method: :delete, data: { confirm: 'Tem certeza?' }, :class => 'btn btn-danger fa fa-trash', :title => 'Deletar' %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

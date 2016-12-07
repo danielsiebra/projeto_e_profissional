@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108173654) do
+ActiveRecord::Schema.define(version: 20161205163829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,13 @@ ActiveRecord::Schema.define(version: 20161108173654) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.boolean  "ativo",      default: true
+  end
+
+  create_table "clientes_servicos", force: :cascade do |t|
+    t.string   "nome"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "modeis", force: :cascade do |t|
@@ -100,7 +107,7 @@ ActiveRecord::Schema.define(version: 20161108173654) do
 
   create_table "profissoes", force: :cascade do |t|
     t.integer  "areas_profissional_id"
-    t.string   "profissao"
+    t.string   "nome_profissao"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.boolean  "ativo",                 default: true
@@ -126,6 +133,14 @@ ActiveRecord::Schema.define(version: 20161108173654) do
   add_index "profissoes_profissionais", ["areas_profissional_id"], name: "index_profissoes_profissionais_on_areas_profissional_id", using: :btree
   add_index "profissoes_profissionais", ["profissao_id"], name: "index_profissoes_profissionais_on_profissao_id", using: :btree
 
+  create_table "registra_emails", force: :cascade do |t|
+    t.string   "email"
+    t.string   "comentario"
+    t.string   "remetente"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "registros_servicos_realizados", force: :cascade do |t|
     t.integer  "profissional_id"
     t.string   "titulo_servico"
@@ -134,13 +149,26 @@ ActiveRecord::Schema.define(version: 20161108173654) do
     t.text     "descricao_servico"
     t.string   "de"
     t.string   "ate"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.integer  "servico_id"
-    t.boolean  "ativo",             default: true
+    t.boolean  "ativo",                      default: true
+    t.integer  "profissoes_profissional_id"
   end
 
   add_index "registros_servicos_realizados", ["profissional_id"], name: "index_registros_servicos_realizados_on_profissional_id", using: :btree
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "servico_id"
+    t.integer  "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "reviews", ["servico_id"], name: "index_reviews_on_servico_id", using: :btree
+  add_index "reviews", ["user_id", "servico_id"], name: "index_reviews_on_user_id_and_servico_id", unique: true, using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "servicos", force: :cascade do |t|
     t.string   "preco"
@@ -152,10 +180,28 @@ ActiveRecord::Schema.define(version: 20161108173654) do
     t.datetime "updated_at",                                     null: false
     t.boolean  "ativo",                           default: true
     t.text     "descricao"
+    t.integer  "profissoes_profissionais_id"
+    t.integer  "cliente_id"
+    t.integer  "clientes_servico_id"
+    t.integer  "reviews_count"
+    t.integer  "area_id"
   end
 
+  add_index "servicos", ["cliente_id"], name: "index_servicos_on_cliente_id", using: :btree
+  add_index "servicos", ["clientes_servico_id"], name: "index_servicos_on_clientes_servico_id", using: :btree
   add_index "servicos", ["profissional_id"], name: "index_servicos_on_profissional_id", using: :btree
+  add_index "servicos", ["profissoes_profissionais_id"], name: "index_servicos_on_profissoes_profissionais_id", using: :btree
   add_index "servicos", ["registros_servicos_realizado_id"], name: "index_servicos_on_registros_servicos_realizado_id", using: :btree
+
+  create_table "servicos_profissionais", force: :cascade do |t|
+    t.integer  "servico_id"
+    t.integer  "profissoes_profissional_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "servicos_profissionais", ["profissoes_profissional_id"], name: "index_servicos_profissionais_on_profissoes_profissional_id", using: :btree
+  add_index "servicos_profissionais", ["servico_id"], name: "index_servicos_profissionais_on_servico_id", using: :btree
 
   create_table "solicitacoes_avaliacoes_servicos", force: :cascade do |t|
     t.string   "nome_cliente"
@@ -182,6 +228,7 @@ ActiveRecord::Schema.define(version: 20161108173654) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
   end
 
   add_index "useres", ["email"], name: "index_useres_on_email", unique: true, using: :btree
@@ -202,7 +249,11 @@ ActiveRecord::Schema.define(version: 20161108173654) do
   add_foreign_key "profissoes_profissionais", "areas_profissionais"
   add_foreign_key "profissoes_profissionais", "profissoes"
   add_foreign_key "registros_servicos_realizados", "profissionais"
+  add_foreign_key "reviews", "servicos"
+  add_foreign_key "reviews", "useres"
   add_foreign_key "servicos", "profissionais"
   add_foreign_key "servicos", "registros_servicos_realizados"
+  add_foreign_key "servicos_profissionais", "profissoes_profissionais"
+  add_foreign_key "servicos_profissionais", "servicos"
   add_foreign_key "solicitacoes_avaliacoes_servicos", "usuarios"
 end

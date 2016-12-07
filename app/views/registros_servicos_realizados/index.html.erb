@@ -1,16 +1,30 @@
+<script type="text/javascript">$('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-title').text('New message to ' + recipient)
+  modal.find('.modal-body input').val(recipient)
+})
+</script>
+<script type="text/javascript">
+(document).ready(function() {
+  $("#adicionar").click(function(){
+    alert("deu certo");
+
+  });
+});
+</script>
+
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
     <div class="col">
       <div class="ibox float-e-margins">
-        <div>
-          <div class="row">
-            <div class="col-md-1 col-md-1">
-              <h4>&nbsp;&nbsp;&nbsp;<%= link_to '', new_registros_servicos_realizado_path, :class => 'btn btn-primary fa fa-plus', :title => 'Novo Profissional' %></h4>
-            </div>
-            <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 ">
-              <div style="text-align:center">
-                <h2>Registros dos Serviços Realizados <span class="btn btn-info m-r-sm"><%= @registros_servicos_realizados.count %></span></h2>
-              </div>
+        <div class="row">
+          <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 ">
+            <div style="text-align:center">
+              <h2>Registros dos Serviços Realizados <span class="btn btn-info m-r-sm"><%= @registros_servicos_realizados.count %></span></h2>
             </div>
           </div>
         </div>
@@ -20,38 +34,78 @@
               <%= notice %> 
             </center>
           </p>
-          <table class="table table-hover">
-            <thead class="table table-bordered">
-              <tr>
-                <th>Titulo serviço</th>
-                <th>Nome cliente</th>
-                <th>E-mail cliente</th>
-                <th>Descriçao serviço</th>
-                <th>De</th>
-                <th>Ate</th>
-                <th colspan="3"></th>
-              </tr>
-            </thead>
-            <tbody class="table table-hover">
-              <div class="contact-box">
-                <% @registros_servicos_realizados.each do |registros_servicos_realizado| %>
-                  <tr>
-                    <td><%= Servico.find(registros_servicos_realizado.servico_id).nome if !registros_servicos_realizado.servico_id.blank? %></td>
-                    <td><%= registros_servicos_realizado.nome_cliente %></td>
-                    <td><%= registros_servicos_realizado.email_cliente %></td>
-                    <td><%= registros_servicos_realizado.descricao_servico %></td>
-                    <td><%= registros_servicos_realizado.de %></td>
-                    <td><%= registros_servicos_realizado.ate %></td>
-                    <div>
-                      <td><%= link_to '', registros_servicos_realizado, :class => 'btn btn-primary fa fa-search', :title => 'Visualizar' %></td>
-                      <td><%= link_to '', edit_registros_servicos_realizado_path(registros_servicos_realizado), :class => 'btn btn-warning fa fa-edit', :title => 'Editar' %></td>
-                      <td><%= link_to '', registros_servicos_realizado, :method=>:delete, data: { confirm: 'Você tem certeza?' }, :class => 'btn btn-danger fa fa-trash',:title => 'Apagar' %></td>
+          <div class="col-md-1 col-md-1 col-md-11">
+            <div class="content-box animated fadeInRight">
+              <div class="container">
+                <h4><%= link_to '', new_registros_servicos_realizado_path, :class => 'btn btn-primary fa fa-plus', :title => 'Novo Profissional' %></h4>
+                <div class="row">
+                  <% @servicos.each do |servicos| %>
+                  <a href="/servicos/<%="#{servicos.id}"%>">
+                    <div class="col-md-3">
+                      <div class="ibox">
+                        <div class="ibox-content product-box">
+                          <div class="product-imitation">
+                            Imagem Aqui.
+                          </div>
+                          <div class="product-desc">
+                            <span class="product-price">
+                              R$&nbsp;<%= servicos.preco %>,00
+                            </span>
+                            <small class="text-muted"><b>Tempo de execução</b> - <b><%= servicos.prazo %></b> dias</small>
+                            <a title="Visualizar" class="product-name"><%= servicos.nome %></a>
+                            <div class="small m-t-xs">
+                              <b>Descrição</b> - <%= servicos.descricao %>
+                            </div>
+                            <div class="m-t text-righ">
+                              <div class="bd-example">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Solicitar avaliação</button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <center>
+                                          <h4 class="modal-title" id="exampleModalLabel"><%= servicos.nome %></h4>
+                                        </center>
+                                      </div>
+                                      <div class="modal-body">
+                                       
+                                        <form id="form">
+                                          <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Nome do cliente</label>
+                                            <input type="text" class="form-control" id="recipient-name">
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">E-mail</label>
+                                            <input type="email" class="form-control" id="recipient-name">
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="message-text" class="form-control-label">Papel do Cliente</label>
+                                            <input type="text" class="form-control" id="recipient-name">
+                                          </div>
+                                          <button type="button" class="btn btn-primary" data-dismiss="modal" id= "adicionar">Adicionar</button>
+                                        </form>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" href="/registra_email/create">Enviar</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </tr>
+                  </a>
                 <% end %>
               </div>
-            </tbody>
-          </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>

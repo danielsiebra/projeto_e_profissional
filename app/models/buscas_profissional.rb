@@ -1,6 +1,8 @@
 class BuscasProfissional < ActiveRecord::Base
-	belongs_to :areas_profissional
-	belongs_to :profissao
-	belongs_to :profissional
-	belongs_to :profissoes_profissional
+	has_many :areas_profissional
+	has_many :profissao
+	has_many :profissional
+	has_many :profissoes_profissional
+	has_many :servico
+	has_many :registros_servicos_realizado
 end

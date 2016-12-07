@@ -1,9 +1,4 @@
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("#registros_servicos_realizado_de").mask("99/99/9999");
-    $("#registros_servicos_realizado_ate").mask("99/99/9999");
-  });
-</script>
+
 
 <%= form_for(@registros_servicos_realizado) do |f| %>
   <% if @registros_servicos_realizado.errors.any? %>
@@ -39,9 +34,9 @@
       Periodo de realização
         <br>
         De:
-          <%= f.text_field :de, :class => 'form-control' %>
+          <%= f.text_field :de, type: 'date', :class => 'form-control' %>
         Até:
-          <%= f.text_field :ate, :class => 'form-control' %>
+          <%= f.text_field :ate, type: 'date', :class => 'form-control' %>
       </div>
       <div class="actions">
         <%= button_tag(type: 'submit', class: "btn btn-primary", title: 'Salvar') do %>

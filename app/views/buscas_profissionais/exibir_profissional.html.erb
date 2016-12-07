@@ -8,17 +8,19 @@
 					Aproximadamente 
 					<b>
 						<%= 
-						if !@nome_completo.blank?
-							@nome_completo.count
-						else 
-							@profissao.count
-						end 
-					%></b>
+							if !@nome_completo.blank?
+								@nome_completo.count
+							else 
+								raise @profissao.inspect
+							end 
+						%>
+					</b>
 					resultados (0.23 seconds)
 				</small>
 				<br>
 			<div class="search-result">		            	
 				<% @busca.each do |buscar| %>
+				<%# raise buscar.inspect %>
 					<h3>
 						<a href="/profissoes_profissionais/<%="#{buscar.id}"%>">
 							<%= "#{buscar.nome_completo}" %>
@@ -31,7 +33,7 @@
 						<p>	
 							<tr>
 								<b>Profissão:</b>
-								<td><%= buscar.profissao %></td>
+								<td><%=buscar.nome_profissao %></td>
 								<br>
 								<b>Nome Comercial:</b>
 								<td><%=buscar.nome_comercial %></td>
@@ -43,7 +45,7 @@
 								<td><%=buscar.celular %></td>
 								<br>
 								<b>Endereço:</b>
-								<td><%=buscar.endereco %></td>				    
+								<td><%=buscar.rua %> - <%=buscar.bairro %></td>				    
 							</tr>
 						</p>
 						<br>

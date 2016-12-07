@@ -3,7 +3,10 @@ class RegistrosServicosRealizadosController < ApplicationController
   # GET /registros_servicos_realizados
   # GET /registros_servicos_realizados.json
   def index
-    @registros_servicos_realizados = RegistrosServicosRealizado.all
+    @registros_servicos_realizados = RegistrosServicosRealizado.where("ativo=?", true)
+
+    @servicos = Servico.select(:id, :nome, :descricao, :preco, :prazo).joins(:registros_servicos_realizado).order(:nome).where("servicos.ativo=?", true)
+    
   end
 
   # GET /registros_servicos_realizados/1
@@ -60,6 +63,10 @@ class RegistrosServicosRealizadosController < ApplicationController
     end
   end
 
+  def teste
+    raise params.inspect
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_registros_servicos_realizado
@@ -68,6 +75,6 @@ class RegistrosServicosRealizadosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registros_servicos_realizado_params
-      params.require(:registros_servicos_realizado).permit(:profissional_id, :titulo_servico, :nome_cliente, :email_cliente, :descricao_servico, :de, :ate, :servico_id)
+      params.require(:registros_servicos_realizado).permit(:profissional_id, :nomes, :titulo_servico, :nome_cliente, :email_cliente, :descricao_servico, :de, :ate, :servico_id)
     end
 end

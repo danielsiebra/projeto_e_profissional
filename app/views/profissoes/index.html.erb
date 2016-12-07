@@ -32,7 +32,7 @@
               <% @profissoes.each do |profissao| %>
                 <tr>
                   <td><%= AreasProfissional.find(profissao.areas_profissional_id).area if !profissao.areas_profissional_id.nil? %></td>
-                  <td><%= profissao.profissao %></td>
+                  <td><%= profissao.nome_profissao %></td>
                   <td><%= link_to '', profissao, :class => ' btn btn-primary fa fa-search', :title => 'Exibir' %></td>
                   <td><%= link_to '', edit_profissao_path(profissao), :class => 'btn btn-warning fa fa-edit', :title => 'Editar' %></td>
                   <td><%= link_to '', profissao, method: :delete, data: { confirm: 'Tem certeza?' }, :class => 'btn btn-danger fa fa-trash', :title => 'Deletar' %></td>

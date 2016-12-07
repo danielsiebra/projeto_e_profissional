@@ -1,31 +1,52 @@
-<p id="notice"><%= notice %></p>
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<center>
+						<h1>
+							Registro das premiacoes
+							<span class="badge badge-info">
+								<%#= @registrar_premiacoes.count %>    
+							</span>
+						</h1>
+					</center>
+				</div>
+				<div class="ibox-content">
+					<p id="notice">
+						<center class="alert-info">
+							<%= notice %>
+						</center>
+					</p>
 
-<h1>Listing Clientes</h1>
+					<table class="table table-hover">
+						<thead class="table table-bordered">
+							<tr>
+								<th>Nome:</th>
+								<th>remetente:</th>
+								<th>destinatário:</th>
+								<th>mensagem:</th>
+								<th>data:</th>
+								<th colspan="2"></th>
+							</tr>
+						</thead> 
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Senha</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @clientes.each do |cliente| %>
-      <tr>
-        <td><%= cliente.nome %></td>
-        <td><%= cliente.email %></td>
-        <td><%= cliente.senha %></td>
-        <td><%= link_to 'Show', cliente %></td>
-        <td><%= link_to 'Edit', edit_cliente_path(cliente) %></td>
-        <td><%= link_to 'Destroy', cliente, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Cliente', new_cliente_path %>
+						<tbody class="table-hover">
+							<% @registrar_premiacoes.each do |registrar_premiacao| %>
+							<tr>
+								<td><%=  registrar_premiacao.nome_id %></td>
+								<td><%=  registrar_premiacao.remetente %></td>
+								<td><%=  registrar_premiacao.email %></td>
+								<td><%=  registrar_premiacao.mensagem %></td>
+								<td><%=  registrar_premiacao.created_at.strftime("%d/%m/%Y %H:%M") if !registrar_premiacao.created_at.nil? %></td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table> 
+				</div>
+			</div>
+		</div>
+	</div>
+</div>s
+					 <!-- link_to '', new_registrar_premiacoes_path, :class => 'btn btn-primary fa fa-plus', :title => 'Enviar e-mail'
+        </div> -->

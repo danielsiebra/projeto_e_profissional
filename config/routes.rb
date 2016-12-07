@@ -1,5 +1,6 @@
 Myapp::Application.routes.draw do
   devise_for :useres
+  resources :clientes_servicos
   devise_for :modeis, controllers: { sessions: 'modeis/sessions' }
   #devise_for :modeis
   resources :servicos
@@ -7,17 +8,29 @@ Myapp::Application.routes.draw do
   resources :clientes
   resources :solicitacoes_avaliacoes_servicos
   resources :usuarios
-  resources :registros_servicos_realizados
+  resources :registros_servicos_realizados do
+    collection do
+      get :teste
+    end
+  end
   resources :profissoes_buscas
   resources :profissionais
   resources :profissoes_profissionais
   resources :profissoes
   resources :areas_profissionais
   resources :buscas_profissionais
+  get 'registra_email/create'
+  resources :registra_email do 
+    collection do
+      get :feedback
+      get :create
+    end
+  end
   # You can have the root of your site routed with "root"
   root to: 'buscas_profissionais#index'
   post "buscas_profissionais/buscar_profissional"
   post "buscas_profissionais/buscar_profissao"
+  get "servicos_profissionais/perfil"
   # All routes
   get "dashboards/dashboard_1"
   get "dashboards/dashboard_2"

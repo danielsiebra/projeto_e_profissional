@@ -1,5 +1,7 @@
 class Servico < ActiveRecord::Base
   belongs_to :profissional
-  belongs_to :registros_servicos_realizado
-  has_many :avaliacoes_servicos
+  has_many :registros_servicos_realizados
+  belongs_to :profissoes_profissional
+  has_many :servicos_profissionais
+  has_many :profissoes_profissionais, through: :servicos_profissionais
 end

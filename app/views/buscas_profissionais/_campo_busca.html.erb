@@ -3,8 +3,8 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <% 
-	@profissionais = Profissional.select(:nome_completo, :nome_comercial).where("ativo=true")
-	@profissoes = Profissao.order(:profissao).distinct
+	@profissionais = Profissional.select(:nome_completo, :nome_comercial).where("ativo=?", true)
+	@profissoes = Profissao.select(:nome_profissao).where("ativo=?", true).distinct(:nome_profissao).order(:nome_profissao)
 	@nome = Array.new
 	@comercial = Array.new
 	@profissao = Array.new
@@ -13,7 +13,7 @@
 		@comercial.push(p.nome_comercial)
 		@profissional = @nome + @comercial
 		@profissoes.each do |r|
-			@profissao.push(r.profissao)
+			@profissao.push(r.nome_profissao)
 %>
 			<script>
 			  $( function() {

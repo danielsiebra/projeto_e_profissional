@@ -1,3 +1,9 @@
+<script type="text/javascript">
+$(function(){
+ $("#servico_preco").maskMoney({symbol:'R$ ', 
+showSymbol:true, thousands:'.', decimal:',', symbolStay: true});
+ })
+</script>
 <%= form_for(@servico) do |f| %>
   <% if @servico.errors.any? %>
     <div id="error_explanation">
@@ -11,28 +17,33 @@
     </div>
   <% end %>
   <div class="field form-group">
-      Profissional
-      <%= f.select(:profissional_id, Profissional.where(:ativo => true).collect {|e| [e.nome_completo, e.id]}, { prompt: "Selecione o Profissional"}, :class => 'form-control', :required => true)%>
-  </div>
-  <div class="field form-group">
-    Preço
-    <%= f.text_field :preco, :class => 'form-control' %>
-  </div>
-  <div class="field form-group">
-    Prazo
-    <%= f.text_field :prazo, :class => 'form-control' %>
-  </div>
-  <div class="field form-group">
-    Nome
+    Título do Serviço
     <%= f.text_field :nome, :class => 'form-control' %>
   </div>
   <div class="field form-group">
-    Descrição
+    Profissional
+    <%= f.select(:profissoes_profissionais_id, ProfissoesProfissional.where(:ativo => true).collect {|e| [e.profissional.nome_completo, e.id]}, { prompt: "Selecione o Profissional"}, :class => 'form-control', :required => true)%>
+  </div>
+  <div class="field form-group">
+    Área do Serviço
+    <%= f.select(:area_id, AreasProfissional.all.collect {|e| [e.area, e.id]}, { prompt: "Selecione a Área do Serviço" },:class => 'form-control', :required => true) %>
+  </div>
+  <div class="field form-group">
+    Preço do Serviço
+    <%= f.text_field :preco, :class => 'form-control' %>
+  </div>
+  <div class="field form-group">
+    Prazo do Serviço
+    <%= f.text_field :prazo, :class => 'form-control', type: 'time' %>
+  </div>
+  <div class="field form-group">
+    Descrição do Serviço
     <%= f.text_field :descricao, :class => 'form-control' %>
   </div>
   <div class="actions">
     <%= button_tag(type: 'submit', class: "btn btn-primary", title: 'Salvar') do %>
-    <i class="fa fa-save"></i>
+    <i class="glyphicon glyphicon-ok"></i>
     <% end %>
+    <%= link_to '', servicos_path, class: 'btn btn-danger fa fa-reply', :title => 'Voltar/Cancelar' %>
   </div>
 <% end %>

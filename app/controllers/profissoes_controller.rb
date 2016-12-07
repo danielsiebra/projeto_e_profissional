@@ -68,6 +68,6 @@ class ProfissoesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profissao_params
-      params.require(:profissao).permit(:areas_profissional_id, :profissao, :ativo)
+      params.require(:profissao).permit(:areas_profissional_id, :nome_profissao, :ativo)
     end
 end
