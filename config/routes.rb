@@ -1,7 +1,7 @@
 Myapp::Application.routes.draw do
   devise_for :useres
   resources :clientes_servicos
-  devise_for :modeis, controllers: { sessions: 'modeis/sessions' }
+  #devise_for :modeis, controllers: { sessions: 'modeis/sessions' }
   #devise_for :modeis
   resources :servicos
   resources :avaliacoes_servicos

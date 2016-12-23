@@ -1,0 +1,36 @@
+<div class="loginscreen animated fadeInDown">
+  <div class="row">
+    <div class="col-md-6 col-md-push-3">
+      <div class="ibox-content">
+        <center><%= image_tag("logo.png") %></center>
+        <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+        <div>
+          <center><b>Fazer login usando sua Conta do Profissionais Já! </b></center>
+          <p>
+          </p>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-group">
+            <%= f.email_field :email, autofocus: true, class: "form-control", :placeholder => "Digite seu e-mail" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.password_field :password, autocomplete: "off", class: "form-control", :placeholder => "Digite sua senha" %>
+          </div>
+          <% if devise_mapping.rememberable? -%>
+          <div class="form-group">
+            <%= f.check_box :remember_me %>
+            Continuar conectado
+          </div>
+          <% end -%>
+          <div class="actions">
+            <%= f.submit "Entrar", class: "btn btn-primary block full-width m-b" %>
+          </div>
+          <% end %>
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
